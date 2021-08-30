@@ -1,8 +1,24 @@
 # copycake
 
-<img src="icon.png" alt="drawing" width="200"/>
+<img src="icon.png" alt="drawing" width="300"/>
 
-### About this app
+## About this app
+
+### This app is made in Symfony 5 on REST API.
+
+Used technologies into projects: 
+ - Redis
+ - MySQL 
+ - RabbitMQ
+ - NGINX
+
+This project I created with:
+  - SOLID
+  - DDD
+  - TDD
+  - KISS
+  - CQRS
+  - DRY
 
 Copy Cake App was created for my girlfriend who is a copywriter. The app allows users to manage their tasks in an easy way.
 
@@ -12,7 +28,9 @@ In addition, the tool generates a simple report for a specific period that can b
 
 ### Docker
 
-To run app in docker run:
+change <b>.env.example</b> on <b>.env</b> and fill in the missing field
+
+To run app in docker:
 
     docker-compose up -d
 
@@ -24,7 +42,11 @@ Install all libraries:
 
     composer install
 
-After install libraries create <b>.env</b> files with config connection     
+Create jwt hash:
+
+    openssl genrsa -out config/jwt/private.pem -aes256 4096
+      
+    openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem
 
 For testing app in docker run:
 
