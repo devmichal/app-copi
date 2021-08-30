@@ -1,5 +1,7 @@
 # copycake
 
+<a href="https://copycake.pl/">Look on copycake</a>
+
 <img src="icon.png" alt="drawing" width="300"/>
 
 ## About this app
