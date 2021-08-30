@@ -1,0 +1,75 @@
+version: '3.9'
+services:
+  db:
+    container_name: db
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db:/var/lib/mysql
+
+  php:
+    container_name: php-fpm
+    build:
+      context: ./docker/php-fpm
+    ports:
+      - 9001:9001
+    volumes:
+      - ./app/:/var/www/symfony:cached
+      - ./logs/symfony:/var/www/symfony/var/log:cached
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    ports:
+      - 8080:80
+    restart: always
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./docker/nginx
+    ports:
+      - 9800:80
+    depends_on:
+      - php
+    environment:
+      - NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx/conf.d
+      - NGINX_ENVSUBST_TEMPLATE_DIR=/etc/nginx/templates
+      - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.template
+      - NGINX_SYMFONY_SERVER_NAME=${NGINX_SYMFONY_SERVER_NAME}
+    volumes:
+      - ./app/:/var/www/symfony:cached
+      - ./logs/nginx:/var/log/nginx:cached
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 8888:15672
+      - 5672:5672
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8090:8080
+
+  phpredisadmin:
+    image: erikdubbelboer/phpredisadmin
+    environment:
+       REDIS_1_HOST: redis
+    ports:
+      - 8889:80

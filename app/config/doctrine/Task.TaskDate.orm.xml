@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <embeddable name="App\Core\Domain\Model\Task\TaskDate">
+
+
+        <field name="createAt" type="datetime" column="create_at"/>
+        <field name="taskDateAt" type="datetime" column="task_date_at"/>
+        <field name="deadLineAt" type="datetime" column="dead_line_at"/>
+        <field name="finishTaskAt" type="datetime" column="finish_task_at"/>
+
+
+    </embeddable>
+</doctrine-mapping>

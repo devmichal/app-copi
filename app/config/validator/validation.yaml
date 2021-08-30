@@ -1,0 +1,26 @@
+App\Core\Application\Command\Task\CreateTaskDTO:
+  properties:
+    titleTask:
+      - NotBlank: ~
+    client:
+      - NotBlank: ~
+    typeText:
+      - NotBlank: ~
+    numberCountCharacter:
+      - NotBlank: ~
+
+App\Core\Application\Command\Client\CreateClientDTO:
+  properties:
+    name:
+      - NotBlank: ~
+    city:
+      - NotBlank: ~
+    street:
+      - NotBlank: ~
+    zipCode:
+      - Length:
+          min: 6
+          max: 6
+    salary:
+      - PositiveOrZero: ~
+

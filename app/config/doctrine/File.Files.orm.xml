@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Core\Domain\Model\File\Files" table="files">
+
+        <id name="id" type="guid" column="id">
+            <generator strategy="NONE"/>
+        </id>
+
+        <field name="nameFiles" type="string" column="name_files" length="200" nullable="false"/>
+        <field name="pathFile" type="string" column="path_file" nullable="false"/>
+        <field name="typeExt" type="string" column="type_ext" nullable="false"/>
+        <field name="createdAt" type="datetime" column="created_At" nullable="false"/>
+
+        <many-to-one field="task" target-entity="App\Core\Domain\Model\Task\Task" inversed-by="files">
+            <join-columns>
+                <join-column name="task_id" referenced-column-name="id"/>
+            </join-columns>
+        </many-to-one>
+
+    </entity>
+</doctrine-mapping>

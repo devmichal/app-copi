@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Core\Domain\Model\Wallet\Wallet" table="wallet">
+
+        <id name="id" type="guid" column="id">
+            <generator strategy="NONE"/>
+        </id>
+
+        <field name="earnMoney"  type="float" precision="10" scale="2" column="earn_money" nullable="true"/>
+        <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+        <field name="bankName" type="string" column="bank_name" nullable="true"/>
+        <field name="bankNumber" type="string" column="bank_number" nullable="true"/>
+
+        <field name="street" type="string" column="street" nullable="true"/>
+        <field name="zipCode" type="string" column="zip_code" length="6" nullable="true"/>
+        <field name="city" type="string" column="city" length="30" nullable="true"/>
+
+        <one-to-one field="users" target-entity="App\Core\Domain\Model\Users\User" mapped-by="wallet">
+        </one-to-one>
+
+    </entity>
+</doctrine-mapping>

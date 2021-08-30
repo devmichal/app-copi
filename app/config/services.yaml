@@ -1,0 +1,60 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Core/Domain/Model/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+            - '../src/Shared/Infrastructure/TwigExtension/'
+
+    App\Core\Ports\Rest\:
+        resource: '../src/Core/Ports/Rest/'
+        tags: ['controller.service_arguments']
+
+
+    query_handlers:
+        namespace: App\Core\Application\Query\
+        resource: '../src/Core/Application/Query/*/*/*QueryHandler.php'
+        autoconfigure: false
+        tags:
+            - { name: messenger.message_handler, bus: query.bus }
+
+    App\Core\Application\Command\Task\CreateTask\CreateTaskCommand:
+        - tags:
+              - { name: kernel.event_subscriber }
+
+    App\Core\Application\Command\Client\CreateClient\CreateClientCommand:
+        - tags:
+              - { name: kernel.event_subscriber }
+
+    App\Core\Application\Command\Client\UpdateClient\UpdateClientCommand:
+        - tags:
+              - { name: kernel.event_subscriber }
+
+    App\Core\Application\Command\Client\DeleteClient\DeleteClientCommand:
+        - tags:
+              - { name: kernel.event_subscriber }
+
+    App\Core\Application\Command\TypeText\CreateTypeText\CreateTypeTextCommand:
+        - tags:
+              - { name: kernel.event_subscriber }
+
+    App\Core\Application\Command\Files\UploadFile\UploadFileCommand:
+        - tags:
+              - { name: kernel.event_subscriber }
+

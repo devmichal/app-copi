@@ -1,0 +1,29 @@
+framework:
+    messenger:
+        failure_transport: failed
+
+        transports:
+            async_create:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                retry_strategy:
+                    delay: 2000
+                    max_retries: 1
+                    multiplier: 2
+                options:
+                    exchange:
+                        name: high
+                    queues:
+                        messages_high: ~
+            failed: 'doctrine://default?queue_name=failed'
+
+        default_bus: event.bus
+        buses:
+            command.bus:
+                middleware:
+                    - doctrine_transaction
+            query.bus:
+            event.bus:
+                default_middleware: allow_no_handlers
+
+        routing:
+            'App\Core\Infrastructure\Event\EventMessage\NewToken\NewTokenMessage': async_create

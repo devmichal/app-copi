@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+        body{
+            font-family: Arial;
+        }
+        .border-right{
+            border-right: 1px solid black;
+        }
+        .border-td{
+            border-top: 1px solid black;
+            border-right: 1px solid black;
+        }
+        .last-td{
+            border-top: 1px solid black;
+        }
+    </style>
+
+</head>
+<body>
+
+    <table style="width: 100%">
+        <thead>
+            <tr>
+                <td style="text-align: left; font-size: 0.8em">
+                    <b>Wykonawca</b> <br>
+                    {{ user.firstName }} {{ user.lastName }}<br>
+                    ul. {{ user.wallet.street}}<br>
+                    {{ user.wallet.zipCode }} {{ user.wallet.city }}
+
+                </td>
+                <td style="text-align: right; font-size: 0.8em">
+                  Data utworzenia: {{ createAt | date('Y-m-d') }}
+                </td>
+            </tr>
+            <tr style="height: 10mm"></tr>
+            <tr>
+                <td style="font-size: 0.8em"><br>
+                    <b>Klient</b><br>
+                    {{ client.name }}<br>
+                    ul. {{ client.street }}<br>
+                    {{ client.zipCode }} {{ client.city }}<br>
+                </td>
+            </tr>
+            <tr>
+                <td><br><br>
+                    RAPORT: od 01-{{ createAt | date('m-Y') }} do {{ lastDayMonth }}-{{ createAt | date('m-Y') }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+
+                    <table style="border: 1px solid black; width: 100%; font-size: 0.8em">
+                        <thead>
+                            <tr style="font-weight: bold;">
+                                <th class="border-right" style="text-align: left;">Lp.</th>
+                                <th class="border-right" style="text-align: left;">Nazwa</th>
+                                <th class="border-right" style="text-align: left;">Liczba ZZS</th>
+                                <th class="border-right" style="text-align: left;">Cena za 1000 ZZS</th>
+                                <th style="text-align: left;">Wartość {{ typeGross }}</th>
+                            </tr>
+                        </thead>
+                        <tbody style="border: 1px solid black; width: 100%;">
+                            {% for key,row in tasks %}
+                                <tr style="border: 1px solid black; width: 100%;">
+                                    <td class="border-td" style="width: 5%">{{ key+1 }}</td>
+                                    <td class="border-td">{{ row.titleTask }}</td>
+                                    <td class="border-td" style="width: 10%">{{ row.numberCountCharacter }}</td>
+                                    <td class="border-td" style="text-align: right; width: 16%">{{ client.salary | number_format(2,',', '.') | replace({'.': ''}) }} PLN</td>
+                                    <td class="last-td" style="text-align: right; width: 14%">{{ row.walletTask.money | number_format(2,',', '.') | replace({'.': ''}) }} PLN</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </td>
+            </tr>
+
+            <tr></tr>
+            <tr>
+                <td style="font-size: 1.2em"><br>
+                    <b style="color: #00ACA9">RAZEM: {{ sumPayout | number_format(2,',', '.') | replace({'.': ''})}} PLN</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size: 1.0em">
+                    <br>
+                    Bank: {{ user.wallet.bankName }}<br>
+                    Numer konta: {{ user.wallet.bankNumber }}
+                </td>
+            </tr>
+
+        </thead>
+    </table>
+
+</body>
+</html>

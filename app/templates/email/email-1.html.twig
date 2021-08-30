@@ -1,0 +1,62 @@
+<html>
+<head>
+
+    <style>
+        .cont{
+            font-weight: bold;
+            margin-left: auto;
+            width: 95%;
+        }
+        .text_code{
+            text-align: center;
+            font-size: 20px;
+        }
+        .code{
+            margin-right: auto;
+            border-radius: 4px;
+            font-size: 31px;
+            color: #00ACA9;
+            letter-spacing: 3px;
+            text-align: center;
+        }
+        .description{
+            text-align: left;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        ul{
+            list-style-position: decimal;
+        }
+        .no-bold{
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cont">
+    <h5 class="text_code">Token to reset you`r old password:</h5>
+    <div class="code">
+        {{ emailData.newToken }}
+    </div>
+
+    <div class="no-bold">
+        <p class="description">
+            To change you`r old password, put this token to the correct field in website copycake.
+        </p><br>
+
+        <ul>
+            <li>
+                Po 4 próbach błędnego wpisania tokenu zostanie wygenerowany nowy token.
+            </li>
+            <li>
+                Token jest ważny 15 min. Po przekroczeniu tego czasu zostanie wygenerowany nowy token.
+            </li>
+        </ul><br>
+
+        Date of generate this e-mail {{ date | date('Y-m-d H:i') }}
+    </div>
+</div>
+
+</body>
+</html>
