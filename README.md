@@ -1,6 +1,6 @@
 # copycake
 
-<a href="https://copycake.pl/">Look on copycake</a>
+<a href="https://copycake.pl/" target="_blank">Look on copycake</a>
 
 <img src="icon.png" alt="drawing" width="300"/>
 
