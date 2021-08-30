@@ -6,27 +6,27 @@
 
 ## About this app
 
-### This app is made in Symfony 5 on REST API.
+Copy Cake App was created for my girlfriend who is a copywriter. The app allows users to manage their tasks in an easy way.
 
-Used technologies into projects: 
- - Redis
- - MySQL 
- - RabbitMQ
- - NGINX
+Copywiters can add all of tasks that have been commissioned by their clients.
+The application automatically calculates the price of the task based on the number of characters in each text written by the copywriter.
+In addition, the tool generates a simple report for a specific period that can be presented to customers in PDF format.
 
-This project I created with:
+## This app was made in Symfony 5 on REST API.
+
+Technologies used in my projects:
+  - Redis
+  - MySQL
+  - RabbitMQ
+  - NGINX
+
+I created this project using:
   - SOLID
   - DDD
   - TDD
   - KISS
   - CQRS
   - DRY
-
-Copy Cake App was created for my girlfriend who is a copywriter. The app allows users to manage their tasks in an easy way.
-
-Copywiters can add all of tasks that have been commissioned by their clients.
-The application automatically calculates the price of the task based on the number of characters in each text written by the copywriter.
-In addition, the tool generates a simple report for a specific period that can be presented to customers in PDF format.
 
 ### Docker
 
