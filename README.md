@@ -12,11 +12,12 @@ Copywiters can add all of tasks that have been commissioned by their clients.
 The application automatically calculates the price of the task based on the number of characters in each text written by the copywriter.
 In addition, the tool generates a simple report for a specific period that can be presented to customers in PDF format.
 
-## This app was made in Symfony 5 on REST API.
+## This app uses Symfony 5 on REST API.
 
 Technologies used in my projects:
   - Redis
   - MySQL
+  - Docker
   - RabbitMQ
   - NGINX
 
