@@ -7,26 +7,24 @@ namespace App\Core\Domain\Model\TypeText;
 use App\Core\Application\Command\TypeText\CreateTypeTextDTO;
 use App\Core\Domain\Model\TypeText\GS\TypeTextGS;
 use App\Core\Domain\Model\Users\User;
-use Doctrine\Common\Collections\ArrayCollection;
+use DateTime;
+use Doctrine\Common\Collections\Collection;
+
 
 class TypeText
 {
     use TypeTextGS;
 
-    /** @var string */
-    private $id;
+    private string $id;
 
-    /** @var string */
-    private $destination;
+    private string $destination;
 
-    /** @var \DateTime */
-    private $createdAt;
+    private DateTime $createdAt;
 
-    /** @var ArrayCollection */
-    private $task;
+    private Collection $task;
 
-    /** @var User */
-    private $user;
+    private User $user;
+
 
     public function __construct()
     {
@@ -34,16 +32,16 @@ class TypeText
         $this->createdAt = new \DateTime();
     }
 
-    public function handlerDTO(
+    final public function handlerDTO(
         CreateTypeTextDTO $createTypeTextDTO
-    )
+    ): void
     {
         $this->destination = $createTypeTextDTO->getDestination();
     }
 
-    public function handlerUser(
+    final public function handlerUser(
         User $user
-    )
+    ): void
     {
         $this->user = $user;
     }

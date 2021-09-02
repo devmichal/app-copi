@@ -17,35 +17,26 @@ class Task
 {
     use TaskGS;
 
-    /** @var string */
-    private $id;
+    private string $id;
 
-    /** @var string */
-    private $titleTask;
+    private string $titleTask;
 
-    /** @var TaskDate */
-    private $taskDate;
+    private TaskDate $taskDate;
 
-    /** @var Client */
-    private $client;
+    private Client $client;
 
-    /** @var bool */
-    private $status;
+    private bool $status;
 
-    /** @var null|TypeText */
-    private $typeText;
+    private ?TypeText $typeText = null;
 
-    /** @var int */ /*zzs on 1000*/
-    private $numberCountCharacter;
+     /*zzs on 1000*/
+    private int $numberCountCharacter;
 
-    /** @var User */
-    private $users;
+    private User $users;
 
-    /** @var Files */
-    private $files;
+    private ?Files $files = null;
 
-    /** @var WalletTask */
-    private $walletTask; // todo here we will start event sourcing
+    private WalletTask $walletTask;
 
     public function __construct(
         User $user
@@ -58,10 +49,10 @@ class Task
         $this->status     = false;
     }
 
-    public function factoryTask(
+    final public function factoryTask(
         CreateTaskDTO $createTaskDTO,
         float $payoutMoney
-    )
+    ): void
     {
         $this->titleTask            = $createTaskDTO->getTitleTask();
         $this->client               = $createTaskDTO->getClient();

@@ -3,27 +3,25 @@
 
 namespace App\Core\Domain\Model\Wallet;
 
+
 use App\Core\Domain\Model\Users\User;
 use App\Core\Domain\Model\Wallet\GS\WalletControlGS;
+use DateTime;
+
 
 class WalletControl
 {
     use WalletControlGS;
 
-    /** @var string */
-    private $id;
+    private string $id;
 
-    /** @var \DateTime */
-    private $createdAt;
+    private DateTime $createdAt;
 
-    /** @var float */
-    private $money;
+    private float $money;
 
-    /** @var WalletTask */
-    private $walletTask;
+    private WalletTask $walletTask;
 
-    /** @var User */
-    private $users;
+    private User $users;
 
     public function __construct(
         User $user,

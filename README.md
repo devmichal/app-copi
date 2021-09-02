@@ -43,7 +43,7 @@ To get into php container:
 
 Install all libraries:
 
-    composer install
+    composer install --dev
 
 Create jwt hash:
 

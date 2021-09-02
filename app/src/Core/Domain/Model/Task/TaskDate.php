@@ -5,22 +5,19 @@ namespace App\Core\Domain\Model\Task;
 
 
 use App\Core\Domain\Model\Task\GS\TaskDateGS;
+use DateTime;
 
 final class TaskDate
 {
     use TaskDateGS;
 
-    /** @var \DateTime */
-    private $createAt;
+    private DateTime $createAt;
 
-    /** @var \DateTime */
-    private $taskDateAt;
+    private DateTime $taskDateAt;
 
-    /** @var \DateTime */
-    private $deadLineAt;
+    private DateTime $deadLineAt;
 
-    /** @var string */
-    private $finishTaskAt;
+    private DateTime $finishTaskAt;
 
     public function __construct()
     {
@@ -29,5 +26,4 @@ final class TaskDate
         $this->taskDateAt   = new \DateTime();
         $this->deadLineAt   = new \DateTime('+1 week');
     }
-
 }

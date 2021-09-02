@@ -7,7 +7,7 @@ namespace App\Core\Domain\Model\Users;
  use App\Core\Application\Command\User\CreateUserDTO;
  use App\Core\Domain\Model\Users\GS\UserGS;
  use App\Core\Domain\Model\Wallet\Wallet;
- use Doctrine\Common\Collections\ArrayCollection;
+ use DateTime;
  use Doctrine\Common\Collections\Collection;
  use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -18,59 +18,42 @@ class User implements UserInterface
 {
     use UserGS;
 
-    /** @var string */
-    private $id;
+    private string $id;
 
-    /** @var string */
-    private $username;
+    private string $username;
 
-    /** @var string */
-    private $firstName;
+    private string $firstName;
 
-    /** @var string */
-    private $lastName;
+    private string $lastName;
 
-    /** @var string */
-    private $email;
+    private string $email;
 
-    /** @var string */
-    private $password;
+    private string $password;
 
-    /** @var \DateTime */
-    private $createdAt;
+    private DateTime $createdAt;
 
-    /** @var boolean */
-    private $enabled;
+    private bool $enabled;
 
-    /** @var array */
-    private $roles;
+    private array $roles;
 
-    /** @var null|Collection */
-    private $tasks;
+    private ?Collection $tasks = null;
 
-    /** @var null|Collection */
-    private $client;
+    private ?Collection $client = null;
 
-    /** @var Wallet */
-    private $wallet;
+    private Wallet $wallet;
 
-    /** @var ArrayCollection */
-    private $walletControl;
+    private ?Collection $walletControl = null;
 
-    /** @var Collection */
-    private $typeText;
+    private Collection $typeText;
 
-    /** @var string */
-    private $codeAuth;
+    private string $codeAuth;
 
-    /** @var null|\DateTime */
-    private $dateAuthAt;
+    private DateTime $dateAuthAt;
 
-    /** @var null|\DateTime */
-    private $changePasswordAt;
+    private DateTime $changePasswordAt;
 
-    /** @var \DateTime */
-    private $disabledAccount;
+    private DateTime $disabledAccount;
+
 
     public function __construct()
     {
@@ -80,9 +63,9 @@ class User implements UserInterface
         $this->enabled   = false;
     }
 
-    public function createUsers(
+    final public function createUsers(
         CreateUserDTO $createUserDTO
-    )
+    ): void
     {
         $this->wallet    = new Wallet();
         $this->username  = $createUserDTO->getUsername();
@@ -93,9 +76,9 @@ class User implements UserInterface
         $this->enabled   = $createUserDTO->isEnable();
     }
 
-    public function addPassword(
+    final public function addPassword(
         string $passwordDTO
-    )
+    ): void
     {
         $this->password         = password_hash($passwordDTO, PASSWORD_BCRYPT);
         $this->changePasswordAt = new \DateTime();
@@ -103,24 +86,24 @@ class User implements UserInterface
         $this->enabled          = true;
     }
 
-    public function disableAccount()
+    final public function disableAccount(): void
     {
         $this->disabledAccount = new \DateTime();
         $this->enabled         = false;
     }
 
-    public function newTokenResetPassword(string $hashToken)
+    final public function newTokenResetPassword(string $hashToken): void
     {
         $this->codeAuth   = $hashToken;
         $this->dateAuthAt = new \DateTime();
     }
 
-    public function managerEnabledUser(bool $enabled)
+    final public function managerEnabledUser(bool $enabled): void
     {
         $this->enabled = $enabled;
     }
 
-     public function __call($name, $arguments)
+     final public function __call($name, $arguments): void
      {
          // TODO: Implement @method string getUserIdentifier()
      }

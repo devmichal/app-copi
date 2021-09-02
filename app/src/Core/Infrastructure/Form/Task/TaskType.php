@@ -14,9 +14,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
 class TaskType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    final public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('titleTask', TextType::class)
@@ -24,7 +25,7 @@ class TaskType extends AbstractType
             ->add('client', EntityType::class,[
                 'class' => Client::class
             ])
-            ->add('typeText', EntityType::class,[
+                ->add('typeText', EntityType::class,[
                 'class' => TypeText::class
             ])
             ->add('numberCountCharacter', TextType::class)
@@ -32,7 +33,7 @@ class TaskType extends AbstractType
             ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    final public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
            'data_class' => CreateTaskDTO::class

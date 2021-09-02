@@ -7,58 +7,49 @@ namespace App\Core\Domain\Model\Client;
 use App\Core\Application\Command\Client\CreateClientDTO;
 use App\Core\Domain\Model\Client\GS\ClientGS;
 use App\Core\Domain\Model\Users\User;
+use DateTime;
 use Doctrine\Common\Collections\Collection;
+
 
 class Client
 {
     use ClientGS;
 
-    /** @var string */
-    private $id;
+    private string $id;
 
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var string */
-    private $city;
+    private string $city;
 
-    /** @var string */
-    private $street;
+    private string $street;
 
-    /** @var string */
-    private $zipCode;
+    private string $zipCode;
 
-    /** @var string */
-    private $numberHouse = 1;
+    private string $numberHouse;
 
-    /** @var null|string */
-    private $taxNumber;
+    private ?string $taxNumber = null;
 
-    /** @var \DateTime */
-    private $createAt;
+    private DateTime $createAt;
 
-    /** @var User */
-    private $user;
+    private User $user;
 
-    /** @var Collection */
-    private $task;
+    private Collection $task;
 
-    /** @var float */ /*the rate for the task. Put in only netto*/
-    private $salary;
+    private float $salary;
 
-    /** @var bool */
-    private $gross;
+    private bool $gross;
+
 
     public function __construct()
     {
         $this->id       = uuid_create();
-        $this->createAt = new \DateTime();
+        $this->createAt = new DateTime();
         $this->gross    = false;
     }
 
-    public function handler(
+    final public function handler(
         CreateClientDTO $createClientDTO
-    )
+    ): void
     {
         $this->name        = $createClientDTO->getName();
         $this->city        = $createClientDTO->getCity();
@@ -69,10 +60,11 @@ class Client
         $this->gross       = $createClientDTO->isGross();
     }
 
-    public function handlerUser(
+    final public function handlerUser(
         User $user
-    )
+    ): void
     {
         $this->user = $user;
     }
+
 }
