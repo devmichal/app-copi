@@ -13,6 +13,7 @@ final class CreateResetToken implements CreateResetTokenInterface
 
 
     /**
+     * @return NewResetTokenDTO
      * @throws \Exception
      */
     public function createToken(): NewResetTokenDTO

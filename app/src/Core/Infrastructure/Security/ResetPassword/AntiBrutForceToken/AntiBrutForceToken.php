@@ -10,6 +10,7 @@ final class AntiBrutForceToken implements AntiBrutForceTokenInterface
 {
     public const COUNT_WRONG_TOKEN = 3;
 
+
     private GetCacheTokenStatus $cacheTokenStatus;
 
 

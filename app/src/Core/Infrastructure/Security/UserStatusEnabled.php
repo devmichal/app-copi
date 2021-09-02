@@ -30,7 +30,7 @@ final class UserStatusEnabled implements UserCheckerInterface
         }
     }
 
-    public function checkPostAuth(UserInterface $user)
+    public function checkPostAuth(UserInterface $user): void
     {
         //dump('checkPostAuth');
     }

@@ -3,7 +3,7 @@
 namespace App\Tests\Core\Infrastructure\Service\AggregateDate;
 
 
-use App\Core\Infrastructure\Service\AggregateDate\SortDayMonth;
+use App\Core\Infrastructure\Service\AggregateDate\LastDayOfMonth;
 use PHPUnit\Framework\TestCase;
 
 class SortDayMonthTest extends TestCase
@@ -13,7 +13,7 @@ class SortDayMonthTest extends TestCase
         $dateTime = new \DateTime();
 
         $date = date('t', strtotime($dateTime->format('Y-m')));
-        $result = SortDayMonth::lastDayOfMonth();
+        $result = LastDayOfMonth::getDay();
 
         $this->assertEquals($date, $result);
     }

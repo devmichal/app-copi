@@ -7,7 +7,7 @@ use App\Core\Domain\Logic\CalculatePayout\SumPayoutTaskOfMonthInterface;
 use App\Core\Domain\Model\Users\User;
 use App\Core\Infrastructure\Repository\Client\MatchClientInterface;
 use App\Core\Infrastructure\Repository\Task\TasksOfMonth;
-use App\Core\Infrastructure\Service\AggregateDate\SortDayMonth;
+use App\Core\Infrastructure\Service\AggregateDate\LastDayOfMonth;
 use DateTime;
 
 
@@ -51,7 +51,7 @@ final class DataPdfReport implements DataPdfReportInterface
             'user'         => $user,
             'createAt'     => new DateTime(),
             'typeGross'    => $myClient->isGross() ? self::GROSS : self::NET,
-            'lastDayMonth' => SortDayMonth::lastDayOfMonth(),
+            'lastDayMonth' => LastDayOfMonth::getDay(),
             'sumPayout'    => $this->sumPayoutTaskOfMonth->sumPayout($client)
         ];
     }

@@ -6,7 +6,7 @@ namespace App\Core\Infrastructure\Repository\Task;
 
 use App\Core\Domain\Model\Task\Task;
 use App\Core\Domain\Model\Users\User;
-use App\Core\Infrastructure\Service\AggregateDate\SortDayMonth;
+use App\Core\Infrastructure\Service\AggregateDate\LastDayOfMonth;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,7 +21,7 @@ class TaskRepository extends ServiceEntityRepository implements GetUserTasks, Ma
     public function tasks(User $user): array
     {
         $monthDay         = new \DateTime();
-        $lastDayOfMonth   = SortDayMonth::lastDayOfMonth();
+        $lastDayOfMonth   = LastDayOfMonth::getDay();
         $aggregateMothYer = $monthDay->format('Y-m');
 
         $qb = $this->createQueryBuilder('t');
@@ -46,7 +46,7 @@ class TaskRepository extends ServiceEntityRepository implements GetUserTasks, Ma
     public function getTasks(string $client): array
     {
         $monthDay         = new \DateTime();
-        $lastDayOfMonth   = SortDayMonth::lastDayOfMonth();
+        $lastDayOfMonth   = LastDayOfMonth::getDay();
         $aggregateMothYer = $monthDay->format('Y-m');
 
         $qb = $this->createQueryBuilder('t');
