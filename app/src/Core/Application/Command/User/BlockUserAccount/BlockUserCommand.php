@@ -6,7 +6,9 @@ final class BlockUserCommand
 {
     public const NAME = 'disable.account';
 
+
     private string $username;
+
 
     public function __construct(
         string $username

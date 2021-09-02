@@ -6,13 +6,13 @@ use HappyTypes\EnumerableType;
 
 final class TypeEmail extends EnumerableType
 {
-    final public static function retryPassword()
+    public static function retryPassword(): TypeEmail
     {
-        return static::get(1, 'Reset password');
+        return self::get(1, 'Reset password');
     }
 
-    final public static function createdUser()
+    public static function createdUser(): TypeEmail
     {
-        return static::get(2, 'Create you`r account');
+        return self::get(2, 'Create you`r account');
     }
 }

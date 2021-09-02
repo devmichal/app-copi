@@ -11,6 +11,7 @@ final class UpdateTypeTexCommand
 {
     public const NAME = 'update.text';
 
+
     private CreateTypeTextDTO $createTypeTextDTO;
 
     private string $idTextType;

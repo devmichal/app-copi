@@ -10,9 +10,11 @@ final class CreateResetTokenPasswordCommand
 {
     public const NAME = 'create.token';
 
+
     private User $user;
 
     private string $newResetTokenDTO;
+
 
     public function __construct(
         User $user,

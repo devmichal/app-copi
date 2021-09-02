@@ -12,6 +12,7 @@ final class CreateTypeTextCommand
 {
     public const NAME = 'create.text';
 
+
     private CreateTypeTextDTO $createTypeTextDTO;
 
     private User $user;

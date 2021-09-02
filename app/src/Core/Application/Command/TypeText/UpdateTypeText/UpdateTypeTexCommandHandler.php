@@ -43,6 +43,7 @@ final class UpdateTypeTexCommandHandler implements EventSubscriberInterface
         $typeText          = $this->findByOneTypeText->findByOneText($typeTexCommand->getIdTextType());
 
         if (!$typeText) {
+
             throw new EmptyTypeText('No found type text');
         }
 

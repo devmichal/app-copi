@@ -11,9 +11,11 @@ final class CreateClientCommand
 {
     public const NAME = 'create.client';
 
+
     private User $user;
 
     private CreateClientDTO $createClientDTO;
+
 
     public function __construct(
         CreateClientDTO $clientDTO,

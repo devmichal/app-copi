@@ -11,9 +11,11 @@ final class UserManagementCommand
 {
     public const NAME = 'user.wallet';
 
+
     private User $user;
 
     private UserManagementCreate $managementCreate;
+
 
     public function __construct(
         User $user,

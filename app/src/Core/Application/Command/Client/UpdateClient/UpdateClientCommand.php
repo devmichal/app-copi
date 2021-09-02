@@ -11,6 +11,7 @@ final class UpdateClientCommand
 {
     public const NAME = 'update.client';
 
+
     private CreateClientDTO $createClientDTO;
 
     private string $client;

@@ -6,7 +6,6 @@ namespace App\Core\Application\Command\User;
 
 final class CreateUserDTO
 {
-
     private string $username;
 
     private string $firstName;
@@ -18,6 +17,7 @@ final class CreateUserDTO
     private array $roles;
 
     private bool $enable;
+
 
     /**
      * @return string

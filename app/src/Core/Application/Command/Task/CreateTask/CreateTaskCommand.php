@@ -12,9 +12,11 @@ final class CreateTaskCommand
 {
     public const NAME = 'create.task';
 
-    private $createTaskDTO;
 
-    private $user;
+    private CreateTaskDTO $createTaskDTO;
+
+    private User $user;
+
 
     public function __construct(
         CreateTaskDTO $createTaskDTO,

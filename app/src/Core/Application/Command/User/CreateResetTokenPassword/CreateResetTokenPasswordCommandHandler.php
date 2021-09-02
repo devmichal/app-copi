@@ -11,6 +11,7 @@ final class CreateResetTokenPasswordCommandHandler implements EventSubscriberInt
 {
     private EntityManagerInterface $entityManager;
 
+
     public function __construct(
         EntityManagerInterface $entityManager
     )

@@ -5,7 +5,6 @@ namespace App\Core\Application\Command\UserManagement;
 
 final class UserManagementCreate
 {
-
     private ?string $bankName;
 
     private ?string $bankNumber;
@@ -15,6 +14,7 @@ final class UserManagementCreate
     private ?string $zipCode;
 
     private ?string $city;
+
 
     /**
      * @return string|null

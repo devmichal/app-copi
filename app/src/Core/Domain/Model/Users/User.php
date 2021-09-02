@@ -105,7 +105,7 @@ class User implements UserInterface
 
      final public function __call($name, $arguments): void
      {
-         // TODO: Implement @method string getUserIdentifier()
+
      }
 
  }

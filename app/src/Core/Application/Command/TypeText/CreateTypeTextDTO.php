@@ -8,6 +8,7 @@ final class CreateTypeTextDTO
 {
     private string $destination;
 
+
     /**
      * @return string
      */

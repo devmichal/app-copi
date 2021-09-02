@@ -13,9 +13,10 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 final class CreateTaskCommandHandler implements EventSubscriberInterface
 {
 
-    private $entityManager;
-
     private CalculatePayoutInterface $calculatePayout;
+
+    private EntityManagerInterface $entityManager;
+
 
     public function __construct(
         EntityManagerInterface $entityManager,

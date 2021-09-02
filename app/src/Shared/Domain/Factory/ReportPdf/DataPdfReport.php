@@ -16,6 +16,7 @@ final class DataPdfReport implements DataPdfReportInterface
     public const GROSS = 'Brutto';
     public const NET   = 'Netto';
 
+
     private MatchClientInterface $matchClient;
 
     private SumPayoutTaskOfMonthInterface $sumPayoutTaskOfMonth;

@@ -10,6 +10,7 @@ use App\Shared\Domain\Exception\InvalidTask;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+
 final class UpdateTaskCommandHandler implements EventSubscriberInterface
 {
 
@@ -18,6 +19,7 @@ final class UpdateTaskCommandHandler implements EventSubscriberInterface
     private MatchTask $matchTask;
 
     private CalculatePayoutInterface $calculatePayout;
+
 
     public function __construct(
         EntityManagerInterface $entityManager,
@@ -37,6 +39,9 @@ final class UpdateTaskCommandHandler implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * @throws InvalidTask
+     */
     public function updateTask(UpdateTaskCommand $command): void
     {
         $createTaskDTO  = $command->getCreateTaskDTO();
@@ -45,6 +50,7 @@ final class UpdateTaskCommandHandler implements EventSubscriberInterface
         $updatedTask    = $this->matchTask->foundTask($command->getTaskId());
 
         if (!$updatedTask) {
+
             throw new InvalidTask('No found task');
         }
 

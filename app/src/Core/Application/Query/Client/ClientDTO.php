@@ -9,7 +9,6 @@ use App\Core\Domain\Model\Client\Client;
 
 final class ClientDTO
 {
-
     private string $id;
 
     private string $name;

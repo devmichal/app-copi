@@ -41,7 +41,7 @@ final class AddNewUserPassword implements AddNewUserPasswordInterface
      * @throws DifferentPasswords
      * @throws InvalidUser
      */
-    public function addNewPassword(NewUserPasswordDTO $userPasswordDTO): void
+    public function addNewPassword(NewUserPasswordDTO $userPasswordDTO): void // todo add tests here
     {
         $users = $this->user->getUser($userPasswordDTO->getUser());
 

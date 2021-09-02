@@ -11,9 +11,10 @@ final class UpdateTaskCommand
 {
     public const NAME = 'update.task';
 
-    private $createTaskDTO;
+    private CreateTaskDTO $createTaskDTO;
 
-    private $taskId;
+    private string $taskId;
+
 
     public function __construct(
         CreateTaskDTO $createTaskDTO,

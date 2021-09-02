@@ -11,7 +11,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 final class BlockUserCommandHandler implements EventSubscriberInterface
 {
-    const FIELD = 'username';
+    public const FIELD = 'username';
 
     private MatchUser $matchUser;
 
@@ -34,11 +34,15 @@ final class BlockUserCommandHandler implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * @throws InvalidUser
+     */
     public function disableAccount(BlockUserCommand $userCommand): void
     {
         $user = $this->matchUser->getUser($userCommand->getUsername(), self::FIELD);
 
         if (!$user) {
+
             throw new InvalidUser('User no exist');
         }
 

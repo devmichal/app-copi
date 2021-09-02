@@ -10,7 +10,6 @@ use App\Shared\Domain\Enum\FormatDate;
 
 final class TaskDTO
 {
-
     private string $id;
 
     private string $titleTask;
@@ -32,6 +31,7 @@ final class TaskDTO
     private ?string $typeTextId = null;
 
     private float $walletTask;
+
 
     public static function fromEntity(Task $task): TaskDTO
     {

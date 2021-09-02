@@ -109,12 +109,12 @@ trait UserGS
 
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+
     }
 
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
+
     }
 
     /**

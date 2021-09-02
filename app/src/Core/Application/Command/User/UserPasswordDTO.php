@@ -11,6 +11,7 @@ final class UserPasswordDTO
 
     private string $retryPassword;
 
+
     /**
      * @return string
      */
