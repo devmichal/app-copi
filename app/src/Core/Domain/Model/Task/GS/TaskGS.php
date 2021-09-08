@@ -10,7 +10,6 @@ use App\Core\Domain\Model\Task\TaskDate;
 use App\Core\Domain\Model\TypeText\TypeText;
 use App\Core\Domain\Model\Users\User;
 use App\Core\Domain\Model\Wallet\WalletTask;
-use Doctrine\Common\Collections\Collection;
 
 trait TaskGS
 {

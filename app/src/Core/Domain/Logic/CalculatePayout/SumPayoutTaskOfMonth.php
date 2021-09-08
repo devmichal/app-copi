@@ -2,35 +2,25 @@
 
 namespace App\Core\Domain\Logic\CalculatePayout;
 
-use App\Core\Infrastructure\Repository\Task\TasksOfMonth;
-
 
 final class SumPayoutTaskOfMonth implements SumPayoutTaskOfMonthInterface
 {
-    private TasksOfMonth $tasksOfMonth;
-
-
-    public function __construct(
-        TasksOfMonth $tasksOfMonth
-    )
-    {
-        $this->tasksOfMonth = $tasksOfMonth;
-    }
 
     /**
-     * @param string $client
+     * @param array|null $tasks
      * @return float
      */
-    public function sumPayout(string $client): float
+    public function sumPayout(?array $tasks): float
     {
-        $monthTasks = $this->tasksOfMonth->getTasks($client);
-        $sumMonth   = 0;
+        $sumMonth = 0;
 
-        if (!$monthTasks) {
+        if (!$tasks) {
+
            return $sumMonth;
         }
 
-        foreach ($monthTasks as $task) {
+        foreach ($tasks as $task) {
+
             $sumMonth += $task->getWalletTask()->getMoney();
         }
 

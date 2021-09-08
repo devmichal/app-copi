@@ -8,6 +8,8 @@ use App\Core\Domain\Model\Users\User;
 use App\Core\Infrastructure\Repository\Client\MatchClientInterface;
 use App\Core\Infrastructure\Repository\Task\TasksOfMonth;
 use App\Core\Infrastructure\Service\AggregateDate\LastDayOfMonth;
+use App\Core\Infrastructure\Service\AggregateDate\SelectDaysCreatedAt;
+use App\Shared\Infrastructure\ValueObject\FilterCreatedAtTask;
 use DateTime;
 
 
@@ -36,14 +38,14 @@ final class DataPdfReport implements DataPdfReportInterface
     }
 
     /**
-     * @param string $client
+     * @param FilterCreatedAtTask $atTask
      * @param User $user
      * @return array
      */
-    public function getData(string $client, User $user): array
+    public function getData(FilterCreatedAtTask $atTask, User $user): array
     {
-        $myClient   = $this->matchClient->foundClient($client);
-        $monthTasks = $this->tasksOfMonth->getTasks($client);
+        $myClient   = $this->matchClient->foundClient($atTask->getClient());
+        $monthTasks = $this->tasksOfMonth->getTasks($atTask);
 
         return [
             'client'       => $myClient,
@@ -51,8 +53,9 @@ final class DataPdfReport implements DataPdfReportInterface
             'user'         => $user,
             'createAt'     => new DateTime(),
             'typeGross'    => $myClient->isGross() ? self::GROSS : self::NET,
-            'lastDayMonth' => LastDayOfMonth::getDay(),
-            'sumPayout'    => $this->sumPayoutTaskOfMonth->sumPayout($client)
+            'firstDay'     => SelectDaysCreatedAt::getStartCreatedAt($atTask->getStartCreatedAt()),
+            'lastDayMonth' => SelectDaysCreatedAt::getFinishCreatedAt($atTask->getFinishCreatedAt()),
+            'sumPayout'    => $this->sumPayoutTaskOfMonth->sumPayout($monthTasks)
         ];
     }
 }

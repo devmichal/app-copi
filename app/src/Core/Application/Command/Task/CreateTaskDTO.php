@@ -12,7 +12,9 @@ final class CreateTaskDTO
 {
     private string $titleTask;
 
-    private string $deadLineAt;
+    private ?string $createdAt = null;
+
+    private ?string $deadLineAt = null;
 
     private ?Client $client = null;
 
@@ -40,17 +42,33 @@ final class CreateTaskDTO
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDeadLineAt(): string
+    public function getCreatedAt(): ?string
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param string|null $createdAt
+     */
+    public function setCreatedAt(?string $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDeadLineAt(): ?string
     {
         return $this->deadLineAt;
     }
 
     /**
-     * @param string $deadLineAt
+     * @param string|null $deadLineAt
      */
-    public function setDeadLineAt(string $deadLineAt): void
+    public function setDeadLineAt(?string $deadLineAt): void
     {
         $this->deadLineAt = $deadLineAt;
     }

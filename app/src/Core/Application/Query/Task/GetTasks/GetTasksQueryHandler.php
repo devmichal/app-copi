@@ -26,7 +26,7 @@ final class GetTasksQueryHandler
      */
     public function __invoke(GetTasksQuery $getTasksQuery): array
     {
-        $tasks = $this->getUserTasks->tasks($getTasksQuery->getUser());
+        $tasks = $this->getUserTasks->tasks($getTasksQuery);
         $data  = array();
 
         foreach ($tasks as $task) {

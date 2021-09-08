@@ -4,9 +4,10 @@
 namespace App\Core\Infrastructure\Repository\Task;
 
 
-use App\Core\Domain\Model\Users\User;
+use App\Core\Application\Query\Task\GetTasks\GetTasksQuery;
+
 
 interface GetUserTasks
 {
-    public function tasks(User $user): array;
+    public function tasks(GetTasksQuery $getTasksQuery): array;
 }

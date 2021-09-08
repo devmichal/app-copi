@@ -6,12 +6,12 @@ namespace App\Core\Domain\Model\Task;
 
 use App\Core\Application\Command\Task\CreateTaskDTO;
 use App\Core\Domain\Model\Client\Client;
-use App\Core\Domain\Model\File\Files;
 use App\Core\Domain\Model\Task\GS\TaskGS;
 use App\Core\Domain\Model\TypeText\TypeText;
 use App\Core\Domain\Model\Users\User;
 use App\Core\Domain\Model\Wallet\WalletTask;
-use App\Shared\Domain\Enum\StatusTask;
+use Doctrine\Common\Collections\Collection;
+
 
 class Task
 {
@@ -34,26 +34,30 @@ class Task
 
     private User $users;
 
-    private ?Files $files = null;
+    private ?Collection $files = null;
 
     private WalletTask $walletTask;
+
 
     public function __construct(
         User $user
     )
     {
-        $this->users      = $user;
         $this->id         = uuid_create();
-        $this->taskDate   = new TaskDate();
+        $this->users      = $user;
         $this->walletTask = new WalletTask();
         $this->status     = false;
     }
 
+    /**
+     * @throws \Exception
+     */
     final public function factoryTask(
         CreateTaskDTO $createTaskDTO,
         float $payoutMoney
     ): void
     {
+        $this->taskDate             = new TaskDate($createTaskDTO);
         $this->titleTask            = $createTaskDTO->getTitleTask();
         $this->client               = $createTaskDTO->getClient();
         $this->numberCountCharacter = $createTaskDTO->getNumberCountCharacter();

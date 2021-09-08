@@ -39,7 +39,7 @@ class GetTasksQueryHandlerTest extends TestCase
         $this->typeText     = $this->createMock(TypeText::class);
     }
 
-    public function testShouldReturnEmptyArray()
+    final public function testShouldReturnEmptyArray(): void
     {
         $this->getUserTasks
              ->method('tasks')
@@ -52,7 +52,7 @@ class GetTasksQueryHandlerTest extends TestCase
         $this->assertEmpty($result);
     }
 
-    public function testShouldFullyArrayOfTask()
+    final public function testShouldFullyArrayOfTask(): void
     {
         $this->getUserTasks
             ->method('tasks')

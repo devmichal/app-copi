@@ -9,6 +9,7 @@ use App\Core\Domain\Model\Users\User;
 use App\Core\Infrastructure\Repository\Client\MatchClientInterface;
 use App\Core\Infrastructure\Repository\Task\TasksOfMonth;
 use App\Shared\Domain\Factory\ReportPdf\DataPdfReport;
+use App\Shared\Infrastructure\ValueObject\FilterCreatedAtTask;
 use PHPUnit\Framework\TestCase;
 
 
@@ -17,6 +18,7 @@ class DataPdfReportTest extends TestCase
     public const GROSS     = 'Brutto';
     public const NET       = 'Netto';
     public const CLIENT_ID = 'someId';
+
 
     /** @var MatchClientInterface|mixed|\PHPUnit\Framework\MockObject\MockObject */
     private $matchClient;
@@ -53,7 +55,7 @@ class DataPdfReportTest extends TestCase
 
     final public function testShouldReturnCheckKeyArrayOfDataToBuildPdfReport(): void
     {
-        $result = $this->dataPdfReport->getData(self::CLIENT_ID, $this->user);
+        $result = $this->dataPdfReport->getData($this->createFilterCreated(), $this->user);
 
         $this->assertArrayHasKey('client', $result);
         $this->assertArrayHasKey('tasks', $result);
@@ -74,7 +76,7 @@ class DataPdfReportTest extends TestCase
             ->method('foundClient')
             ->willReturn($this->client);
 
-        $result = $this->dataPdfReport->getData(self::CLIENT_ID, $this->user);
+        $result = $this->dataPdfReport->getData($this->createFilterCreated(), $this->user);
 
         $this->assertEquals(self::GROSS, $result['typeGross']);
     }
@@ -89,9 +91,14 @@ class DataPdfReportTest extends TestCase
             ->method('foundClient')
             ->willReturn($this->client);
 
-        $result = $this->dataPdfReport->getData(self::CLIENT_ID, $this->user);
+        $result = $this->dataPdfReport->getData($this->createFilterCreated(), $this->user);
 
         $this->assertEquals(self::NET, $result['typeGross']);
+    }
+
+    private function createFilterCreated(): FilterCreatedAtTask
+    {
+        return new FilterCreatedAtTask(self::CLIENT_ID, null, null);
     }
 
 }

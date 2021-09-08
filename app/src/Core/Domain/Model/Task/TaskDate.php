@@ -4,8 +4,10 @@
 namespace App\Core\Domain\Model\Task;
 
 
+use App\Core\Application\Command\Task\CreateTaskDTO;
 use App\Core\Domain\Model\Task\GS\TaskDateGS;
 use DateTime;
+
 
 final class TaskDate
 {
@@ -19,11 +21,19 @@ final class TaskDate
 
     private DateTime $finishTaskAt;
 
-    public function __construct()
+    /**
+     * @throws \Exception
+     */
+    public function __construct(
+        CreateTaskDTO $createTaskDTO
+    )
     {
-        $this->createAt     = new \DateTime();
-        $this->finishTaskAt = new \DateTime();
-        $this->taskDateAt   = new \DateTime();
-        $this->deadLineAt   = new \DateTime('+1 week');
+        $deadlineAt = $createTaskDTO->getDeadLineAt() ?: '+1 week';
+        $createdAt  = $createTaskDTO->getCreatedAt()  ?: 'now';
+
+        $this->createAt     = new DateTime($createdAt);
+        $this->finishTaskAt = new DateTime();
+        $this->taskDateAt   = new DateTime();
+        $this->deadLineAt   = new DateTime($deadlineAt);
     }
 }

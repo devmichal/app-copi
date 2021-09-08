@@ -20,9 +20,9 @@ final class GetClientsQueryHandler
         $this->userClients = $userClients;
     }
 
-    public function __invoke(GetClientsQuery $clientsQuery): array
+    public function __invoke(GetClientsQuery $clientsQuery): ?array
     {
-        $clientsData = array();
+        $clientsData = [];
         $clients     = $this->userClients->getClients($clientsQuery->getUser());
 
         foreach ($clients as $client) {

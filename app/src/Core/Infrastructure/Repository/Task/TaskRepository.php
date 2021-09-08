@@ -4,9 +4,10 @@
 namespace App\Core\Infrastructure\Repository\Task;
 
 
+use App\Core\Application\Query\Task\GetTasks\GetTasksQuery;
 use App\Core\Domain\Model\Task\Task;
-use App\Core\Domain\Model\Users\User;
-use App\Core\Infrastructure\Service\AggregateDate\LastDayOfMonth;
+use App\Core\Infrastructure\Service\AggregateDate\SelectDaysCreatedAt;
+use App\Shared\Infrastructure\ValueObject\FilterCreatedAtTask;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -18,36 +19,27 @@ class TaskRepository extends ServiceEntityRepository implements GetUserTasks, Ma
          parent::__construct($registry, Task::class);
      }
 
-    public function tasks(User $user): array
+    final public function tasks(GetTasksQuery $getTasksQuery): array
     {
-        $monthDay         = new \DateTime();
-        $lastDayOfMonth   = LastDayOfMonth::getDay();
-        $aggregateMothYer = $monthDay->format('Y-m');
-
         $qb = $this->createQueryBuilder('t');
         $qb
             ->where('t.users = :users')
-            ->andWhere('t.taskDate.createAt >= :firstDay')
-            ->andWhere('t.taskDate.createAt <= :lastDay')
 
-            ->setParameter('firstDay', $aggregateMothYer.".01")
-            ->setParameter('lastDay', $aggregateMothYer.'.'.$lastDayOfMonth)
-            ->setParameter('users', $user)
+            ->setParameter('users', $getTasksQuery->getUser())
             ->orderBy('t.taskDate.createAt', 'DESC');
 
         return $qb->getQuery()->getResult();
     }
 
-    public function foundTask(string $idTask): ?Task
+    final public function foundTask(string $idTask): ?Task
     {
         return $this->findOneBy(['id'=>$idTask]);
     }
 
-    public function getTasks(string $client): array
+    final public function getTasks(FilterCreatedAtTask $atTask): array
     {
-        $monthDay         = new \DateTime();
-        $lastDayOfMonth   = LastDayOfMonth::getDay();
-        $aggregateMothYer = $monthDay->format('Y-m');
+        $startCreated  = SelectDaysCreatedAt::getStartCreatedAt($atTask->getStartCreatedAt());
+        $finishCreated = SelectDaysCreatedAt::getFinishCreatedAt($atTask->getFinishCreatedAt());
 
         $qb = $this->createQueryBuilder('t');
         $qb
@@ -55,9 +47,10 @@ class TaskRepository extends ServiceEntityRepository implements GetUserTasks, Ma
             ->andWhere('t.taskDate.createAt <= :lastDay')
             ->andWhere('t.client = :client')
 
-            ->setParameter('firstDay', $aggregateMothYer.".01")
-            ->setParameter('lastDay', $aggregateMothYer.'.'.$lastDayOfMonth)
-            ->setParameter('client', $client)
+            ->setParameter('firstDay', $startCreated)
+            ->setParameter('lastDay', $finishCreated)
+            ->setParameter('client', $atTask->getClient())
+            ->orderBy('t.taskDate.createAt', 'DESC')
             ;
 
         return $qb->getQuery()->getResult();

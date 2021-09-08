@@ -21,6 +21,7 @@ class TaskType extends AbstractType
     {
         $builder
             ->add('titleTask', TextType::class)
+            ->add('createdAt', TextType::class)
             ->add('deadLineAt', TextType::class)
             ->add('client', EntityType::class,[
                 'class' => Client::class

@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class ClientType extends AbstractType
 {
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    final public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class)
@@ -28,7 +28,7 @@ class ClientType extends AbstractType
             ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    final public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
            'data_class' => CreateClientDTO::class
