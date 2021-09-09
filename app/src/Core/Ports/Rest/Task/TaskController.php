@@ -5,9 +5,11 @@ namespace App\Core\Ports\Rest\Task;
 
 
 use App\Core\Application\Command\Task\CreateTask\CreateTaskCommand;
+use App\Core\Application\Command\Task\DeleteTask\DeleteTaskCommand;
 use App\Core\Application\Command\Task\UpdateTask\UpdateTaskCommand;
 use App\Core\Infrastructure\Form\Task\TaskType;
 use App\Core\Ports\Rest\CreateRestApi;
+use App\Shared\Infrastructure\Http\HttpCode;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -54,5 +56,18 @@ class TaskController extends CreateRestApi
         ), UpdateTaskCommand::NAME);
 
         return $this->json(null, 204);
+    }
+
+    /**
+     * @Route("/task/{task}", methods={"DELETE"})
+     */
+    final public function deleteAction(
+        string $task,
+        EventDispatcherInterface $eventDispatcher
+    ): JsonResponse
+    {
+        $eventDispatcher->dispatch(new DeleteTaskCommand($task), DeleteTaskCommand::NAME);
+
+        return $this->json(null, HttpCode::NO_CONTENT);
     }
 }

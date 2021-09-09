@@ -42,9 +42,10 @@ class Client
 
     public function __construct()
     {
-        $this->id       = uuid_create();
-        $this->createAt = new DateTime();
-        $this->gross    = false;
+        $this->id          = uuid_create();
+        $this->createAt    = new DateTime();
+        $this->numberHouse = 0;
+        $this->gross       = false;
     }
 
     final public function handler(
