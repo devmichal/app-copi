@@ -45,7 +45,6 @@ class Task
     {
         $this->id         = uuid_create();
         $this->users      = $user;
-        $this->walletTask = new WalletTask();
         $this->status     = false;
     }
 
@@ -63,7 +62,7 @@ class Task
         $this->numberCountCharacter = $createTaskDTO->getNumberCountCharacter();
         $this->typeText             = $createTaskDTO->getTypeText();
         $this->status               = $createTaskDTO->isStatus();
-        $this->walletTask->updateVariable($payoutMoney);
+        $this->walletTask           = new WalletTask($payoutMoney);
     }
 
 }

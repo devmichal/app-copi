@@ -22,8 +22,11 @@ class WalletTask
     private Collection $walletControl;
 
 
-    public function __construct()
+    public function __construct(
+        float $payoutMoney
+    )
     {
+        $this->money     = $payoutMoney;
         $this->id        = uuid_create();
         $this->createdAt = new DateTime();
     }

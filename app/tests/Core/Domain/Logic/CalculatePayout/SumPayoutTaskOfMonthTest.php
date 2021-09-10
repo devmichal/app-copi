@@ -46,11 +46,9 @@ class SumPayoutTaskOfMonthTest extends TestCase
 
     private function createTaskOfMonth(): array
     {
-        $walletFirst = new WalletTask();
-        $walletFirst->updateVariable(13.4);
+        $walletFirst = new WalletTask(13.4);
 
-        $walletSecond = new WalletTask();
-        $walletSecond->updateVariable(51.1);
+        $walletSecond = new WalletTask(51.1);
 
         $this->firstTask
              ->method('getWalletTask')
