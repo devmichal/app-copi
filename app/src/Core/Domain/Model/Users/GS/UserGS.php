@@ -99,14 +99,6 @@ trait UserGS
         return $this->client;
     }
 
-    /**
-     * @return Files
-     */
-    public function getFiles(): Files
-    {
-        return $this->files;
-    }
-
     public function getSalt()
     {
 
@@ -146,6 +138,6 @@ trait UserGS
      */
     public function getChangePassword(): ?\DateTime
     {
-        return $this->changePassword;
+        return $this->changePasswordAt;
     }
 }

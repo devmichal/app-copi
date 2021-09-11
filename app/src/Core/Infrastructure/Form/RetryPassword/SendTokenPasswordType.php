@@ -11,13 +11,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SendTokenPasswordType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    final public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('user', TextType::class);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    final public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
            'data_class' => SendTokenPasswordDTO::class

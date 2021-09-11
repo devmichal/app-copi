@@ -50,14 +50,6 @@ trait FilesGS
     }
 
     /**
-     * @return User
-     */
-    public function getUsers(): User
-    {
-        return $this->users;
-    }
-
-    /**
      * @return Task
      */
     public function getTask(): Task
