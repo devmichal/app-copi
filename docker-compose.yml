@@ -16,10 +16,12 @@ services:
     build:
       context: ./docker/php-fpm
     ports:
-      - 9001:9001
+      - 9000:9001
     volumes:
-      - ./app/:/var/www/symfony:cached
+      - ./app:/var/www/symfony:cached
       - ./logs/symfony:/var/www/symfony/var/log:cached
+    depends_on:
+       - db
 
   phpmyadmin:
     image: phpmyadmin
@@ -46,7 +48,7 @@ services:
       - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.template
       - NGINX_SYMFONY_SERVER_NAME=${NGINX_SYMFONY_SERVER_NAME}
     volumes:
-      - ./app/:/var/www/symfony:cached
+      - ./app:/var/www/symfony:cached
       - ./logs/nginx:/var/log/nginx:cached
 
   redis:

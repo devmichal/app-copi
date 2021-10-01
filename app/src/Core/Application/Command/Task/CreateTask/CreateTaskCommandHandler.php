@@ -6,6 +6,7 @@ namespace App\Core\Application\Command\Task\CreateTask;
 
 use App\Core\Domain\Logic\CalculatePayout\CalculatePayoutInterface;
 use App\Core\Domain\Model\Task\Task;
+use App\Core\Infrastructure\Event\EventSourcing\UpdatePayment\UpdatePaymentTask;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -34,13 +35,17 @@ final class CreateTaskCommandHandler implements EventSubscriberInterface
         ];
     }
 
-    public function createTask(CreateTaskCommand $command): void
+    public function createTask(CreateTaskCommand $command): void // todo start event sorsing
     {
         $client        = $command->getCreateTaskDTO()->getClient();
         $createTaskDTO = $command->getCreateTaskDTO();
         $user          = $command->getUser();
 
-        $paymentMoney  = $this->calculatePayout->myPayment($client->getSalary(), $createTaskDTO->getNumberCountCharacter());
+        $paymentMoney  = $this->calculatePayout->myPayment(
+            $client->getSalary(),
+            $createTaskDTO->getNumberCountCharacter());
+
+//        new UpdatePaymentTask($client->getSalary(), 12);
 
         $task = new Task($user);
         $task->factoryTask($createTaskDTO, $paymentMoney);
