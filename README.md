@@ -54,3 +54,7 @@ Create jwt hash:
 For testing app in docker run:
 
     ./vendor/bin/phpunit
+
+Analyse clear code
+
+    vendor/bin/phpstan analyse src

@@ -56,13 +56,22 @@ class Task
         float $payoutMoney
     ): void
     {
-        $this->taskDate             = new TaskDate($createTaskDTO);
         $this->titleTask            = $createTaskDTO->getTitleTask();
         $this->client               = $createTaskDTO->getClient();
         $this->numberCountCharacter = $createTaskDTO->getNumberCountCharacter();
         $this->typeText             = $createTaskDTO->getTypeText();
         $this->status               = $createTaskDTO->isStatus();
         $this->walletTask           = new WalletTask($payoutMoney);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    final public function updateTaskDate(
+        CreateTaskDTO $createTaskDTO
+    ): void
+    {
+        $this->taskDate = new TaskDate($createTaskDTO);
     }
 
 }

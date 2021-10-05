@@ -14,6 +14,7 @@ use App\Core\Domain\Model\Users\User;
 use App\Core\Infrastructure\Repository\Task\GetUserTasks;
 use PHPUnit\Framework\TestCase;
 
+
 class GetTasksQueryHandlerTest extends TestCase
 {
     const COUNT_TEXT = 1000;
@@ -76,6 +77,7 @@ class GetTasksQueryHandlerTest extends TestCase
 
         $task = new Task($this->user);
         $task->factoryTask($createTaskDTO, 10);
+        $task->updateTaskDate($createTaskDTO);
 
         return array($task);
     }

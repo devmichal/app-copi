@@ -5,6 +5,7 @@ namespace App\Core\Domain\Model\Task;
 
 
 use App\Core\Application\Command\Task\CreateTaskDTO;
+use App\Core\Domain\Logic\TransformDate\TransformDate;
 use App\Core\Domain\Model\Task\GS\TaskDateGS;
 use DateTime;
 
@@ -29,9 +30,8 @@ final class TaskDate
     )
     {
         $deadlineAt = $createTaskDTO->getDeadLineAt() ?: '+1 week';
-        $createdAt  = $createTaskDTO->getCreatedAt()  ?: 'now';
 
-        $this->createAt     = new DateTime($createdAt);
+        $this->createAt     = TransformDate::createdAt($createTaskDTO->getCreatedAt());
         $this->finishTaskAt = new DateTime();
         $this->taskDateAt   = new DateTime();
         $this->deadLineAt   = new DateTime($deadlineAt);

@@ -3,6 +3,7 @@
 namespace App\Tests\Core\Application\Command\Task\UpdateTask;
 
 use App\Core\Application\Command\Task\CreateTaskDTO;
+use App\Core\Application\Command\Task\UpdateTask\UpdateDataTimeTask\UpdateComponentTaskInterface;
 use App\Core\Application\Command\Task\UpdateTask\UpdateTaskCommand;
 use App\Core\Application\Command\Task\UpdateTask\UpdateTaskCommandHandler;
 use App\Core\Domain\Logic\CalculatePayout\CalculatePayoutInterface;
@@ -39,22 +40,27 @@ class UpdateTaskCommandHandlerTest extends TestCase
     /** @var Task|mixed|\PHPUnit\Framework\MockObject\MockObject */
     private $user;
 
-    protected function setUp(): void
+    /** @var UpdateComponentTaskInterface|mixed|\PHPUnit\Framework\MockObject\MockObject */
+    private $updateComponentTask;
+
+    final protected function setUp(): void
     {
-        $this->entityManager   = $this->createMock(EntityManagerInterface::class);
-        $this->matchTask       = $this->createMock(MatchTask::class);
-        $this->calculatePayout = $this->createMock(CalculatePayoutInterface::class);
-        $this->client          = $this->createMock(Client::class);
-        $this->user            = $this->createMock(User::class);
+        $this->entityManager       = $this->createMock(EntityManagerInterface::class);
+        $this->matchTask           = $this->createMock(MatchTask::class);
+        $this->calculatePayout     = $this->createMock(CalculatePayoutInterface::class);
+        $this->client              = $this->createMock(Client::class);
+        $this->user                = $this->createMock(User::class);
+        $this->updateComponentTask = $this->createMock(UpdateComponentTaskInterface::class);
 
         $this->updateTaskCommandHandler = new UpdateTaskCommandHandler(
             $this->entityManager,
             $this->matchTask,
-            $this->calculatePayout
+            $this->calculatePayout,
+            $this->updateComponentTask
         );
     }
 
-    public function testShouldReturnExceptionNotFoundTask()
+    final public function testShouldReturnExceptionNotFoundTask(): void
     {
         $this->expectException(InvalidTask::class);
 
@@ -64,7 +70,7 @@ class UpdateTaskCommandHandlerTest extends TestCase
         $this->updateTaskCommandHandler->updateTask($updateTask);
     }
 
-    public function testShouldUpdateTask()
+    final public function testShouldUpdateTask(): void
     {
         $updateTaskCommand = $this->prepareTaskCommand();
         $updateTask        = $updateTaskCommand->getCreateTaskDTO();

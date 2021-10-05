@@ -32,7 +32,7 @@ class CreateTaskCommandHandlerTest extends TestCase
     private $client;
 
 
-    protected function setUp(): void
+    final protected function setUp(): void
     {
         $this->entityManager   = $this->createMock(EntityManagerInterface::class);
         $this->calculatePayout = $this->createMock(CalculatePayoutInterface::class);
