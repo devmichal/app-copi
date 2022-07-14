@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS `copy-cake-test`;
+CREATE DATABASE IF NOT EXISTS `copy-cake`;

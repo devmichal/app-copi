@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Core\Application\Command\Task\DeleteTask;
 
 
@@ -11,19 +13,12 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 final class DeleteTaskCommandHandler implements EventSubscriberInterface
 {
-    private EntityManagerInterface $entityManager;
-
-    private MatchTask $matchTask;
-
 
     public function __construct(
-        EntityManagerInterface $entityManager,
-        MatchTask $matchTask
+        private EntityManagerInterface $entityManager,
+        private MatchTask $matchTask
     )
-    {
-        $this->entityManager = $entityManager;
-        $this->matchTask = $matchTask;
-    }
+    {}
 
     public static function getSubscribedEvents(): array
     {

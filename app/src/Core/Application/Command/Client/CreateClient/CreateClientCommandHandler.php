@@ -1,24 +1,18 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Core\Application\Command\Client\CreateClient;
-
 
 use App\Core\Domain\Model\Client\Client;
 use App\Core\Infrastructure\Repository\Client\ClientRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-
 final class CreateClientCommandHandler implements EventSubscriberInterface
 {
-    private ClientRepositoryInterface $clientRepository;
-
-
     public function __construct(
-        ClientRepositoryInterface $clientRepository
-    )
-    {
-        $this->clientRepository = $clientRepository;
+       private ClientRepositoryInterface $clientRepository
+    ){
     }
 
     public static function getSubscribedEvents(): array

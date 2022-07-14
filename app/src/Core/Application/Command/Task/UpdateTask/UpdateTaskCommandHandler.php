@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Core\Application\Command\Task\UpdateTask;
 
@@ -15,27 +16,13 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 final class UpdateTaskCommandHandler implements EventSubscriberInterface
 {
 
-    private EntityManagerInterface $entityManager;
-
-    private MatchTask $matchTask;
-
-    private CalculatePayoutInterface $calculatePayout;
-
-    private UpdateComponentTaskInterface $updateComponentTask;
-
-
     public function __construct(
-        EntityManagerInterface $entityManager,
-        MatchTask $matchTask,
-        CalculatePayoutInterface $calculatePayout,
-        UpdateComponentTaskInterface $updateComponentTask
+        private EntityManagerInterface $entityManager,
+        private MatchTask $matchTask,
+        private CalculatePayoutInterface $calculatePayout,
+        private UpdateComponentTaskInterface $updateComponentTask
     )
-    {
-        $this->entityManager = $entityManager;
-        $this->matchTask = $matchTask;
-        $this->calculatePayout = $calculatePayout;
-        $this->updateComponentTask = $updateComponentTask;
-    }
+    {}
 
     public static function getSubscribedEvents(): array
     {

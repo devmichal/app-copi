@@ -12,7 +12,7 @@ final class FactoryEmail
     public static function resetPassword(string $email, string $userToken): NotificationEmil
     {
         return new NotificationEmil(
-            TypeEmail::retryPassword()->id(),
+            TypeEmail::RESET_PASSWORD->value,
             $email,
             [
                 'newToken' => $userToken

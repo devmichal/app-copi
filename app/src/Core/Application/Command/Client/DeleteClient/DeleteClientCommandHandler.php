@@ -1,29 +1,19 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Core\Application\Command\Client\DeleteClient;
-
 
 use App\Core\Infrastructure\Repository\Client\MatchClientInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-
 final class DeleteClientCommandHandler implements EventSubscriberInterface
 {
-
-    private EntityManagerInterface $entityManager;
-
-    private MatchClientInterface $matchClient;
-
-
     public function __construct(
-        EntityManagerInterface $entityManager,
-        MatchClientInterface $matchClient
-    )
-    {
-        $this->entityManager = $entityManager;
-        $this->matchClient = $matchClient;
+       private EntityManagerInterface $entityManager,
+       private MatchClientInterface $matchClient
+    ){
     }
 
     public static function getSubscribedEvents(): array

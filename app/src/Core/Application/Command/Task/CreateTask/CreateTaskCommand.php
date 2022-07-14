@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Core\Application\Command\Task\CreateTask;
 
@@ -13,31 +14,19 @@ final class CreateTaskCommand
     public const NAME = 'create.task';
 
 
-    private CreateTaskDTO $createTaskDTO;
-
-    private User $user;
-
-
     public function __construct(
-        CreateTaskDTO $createTaskDTO,
-        User $user
+        private CreateTaskDTO $createTaskDTO,
+        private User $user
     )
     {
-        $this->createTaskDTO = $createTaskDTO;
-        $this->user = $user;
     }
 
-    /**
-     * @return CreateTaskDTO
-     */
+
     public function getCreateTaskDTO(): CreateTaskDTO
     {
         return $this->createTaskDTO;
     }
 
-    /**
-     * @return User
-     */
     public function getUser(): User
     {
         return $this->user;

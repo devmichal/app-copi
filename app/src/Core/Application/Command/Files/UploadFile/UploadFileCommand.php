@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Core\Application\Command\Files\UploadFile;
 
 
@@ -10,31 +12,18 @@ final class UploadFileCommand
 {
     public const NAME = 'upload.file';
 
-    private string $taskId;
-
-    private UploadedFile $uploadedFile;
-
 
     public function __construct(
-        UploadedFile $uploadedFile,
-        string $taskId
+        private UploadedFile $uploadedFile,
+        private string $taskId
     )
-    {
-        $this->taskId = $taskId;
-        $this->uploadedFile = $uploadedFile;
-    }
+    {}
 
-    /**
-     * @return string
-     */
     public function getTaskId(): string
     {
         return $this->taskId;
     }
 
-    /**
-     * @return UploadedFile
-     */
     public function getUploadedFile(): UploadedFile
     {
         return $this->uploadedFile;

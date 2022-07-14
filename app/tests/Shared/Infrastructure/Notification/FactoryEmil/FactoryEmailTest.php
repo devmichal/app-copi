@@ -18,8 +18,7 @@ class FactoryEmailTest extends TestCase
     {
         $result = FactoryEmail::resetPassword(self::USER_EMAIL, self::USER_TOKEN);
 
-        $this->assertInstanceOf(NotificationEmil::class, $result);
-        $this->assertEquals(TypeEmail::retryPassword()->id(), $result->getTitleEmail());
+        $this->assertEquals(TypeEmail::RESET_PASSWORD->value, $result->getTitleEmail());
         $this->assertEquals(self::USER_EMAIL, $result->getRecipientEmail());
         $this->assertIsArray($result->getDataEmail());
     }

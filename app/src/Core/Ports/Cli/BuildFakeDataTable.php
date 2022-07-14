@@ -14,16 +14,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class BuildFakeDataTable extends Command
 {
-    private EntityManagerInterface $entityManager;
-
-
     public function __construct(
-        string $name = null,
-        EntityManagerInterface $entityManager
+        private EntityManagerInterface $entityManager,
+        string $name = null
     )
     {
         parent::__construct($name);
-        $this->entityManager = $entityManager;
     }
 
     protected function configure(): void

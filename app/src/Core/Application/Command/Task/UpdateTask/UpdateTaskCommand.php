@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Core\Application\Command\Task\UpdateTask;
 
@@ -11,19 +12,12 @@ final class UpdateTaskCommand
 {
     public const NAME = 'update.task';
 
-    private CreateTaskDTO $createTaskDTO;
-
-    private string $taskId;
-
-
     public function __construct(
-        CreateTaskDTO $createTaskDTO,
-        string $taskId
+        private CreateTaskDTO $createTaskDTO,
+        private string $taskId
     )
     {
-        $this->createTaskDTO = $createTaskDTO;
-        $this->taskId = $taskId;
-    }
+       }
 
     /**
      * @return CreateTaskDTO

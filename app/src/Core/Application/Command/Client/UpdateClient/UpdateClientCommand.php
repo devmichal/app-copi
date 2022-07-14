@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Core\Application\Command\Client\UpdateClient;
 
@@ -11,32 +12,18 @@ final class UpdateClientCommand
 {
     public const NAME = 'update.client';
 
-
-    private CreateClientDTO $createClientDTO;
-
-    private string $client;
-
-
     public function __construct(
-        CreateClientDTO $clientDTO,
-        string $client
-    )
-    {
-        $this->createClientDTO = $clientDTO;
-        $this->client          = $client;
+        private CreateClientDTO $clientDTO,
+        private string $client
+    ){
+
     }
 
-    /**
-     * @return CreateClientDTO
-     */
     public function getCreateClientDTO(): CreateClientDTO
     {
-        return $this->createClientDTO;
+        return $this->clientDTO;
     }
 
-    /**
-     * @return string
-     */
     public function getClient(): string
     {
         return $this->client;

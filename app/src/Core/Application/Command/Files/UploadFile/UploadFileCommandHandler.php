@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Core\Application\Command\Files\UploadFile;
 
 
@@ -13,27 +15,14 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 final class UploadFileCommandHandler implements EventSubscriberInterface
 {
-    private EntityManagerInterface $entityManager;
-
-    private ValidFileExtInterface $validFileExt;
-
-    private SaveUploadFileInterface $saveUploadFile;
-
-    private MatchTask $matchTask;
-
 
     public function __construct(
-        EntityManagerInterface $entityManager,
-        ValidFileExtInterface $validFileExt,
-        SaveUploadFileInterface $saveUploadFile,
-        MatchTask $matchTask
+        private EntityManagerInterface $entityManager,
+        private ValidFileExtInterface $validFileExt,
+        private SaveUploadFileInterface $saveUploadFile,
+        private MatchTask $matchTask
     )
-    {
-        $this->entityManager = $entityManager;
-        $this->validFileExt = $validFileExt;
-        $this->saveUploadFile = $saveUploadFile;
-        $this->matchTask = $matchTask;
-    }
+    {}
 
 
     public static function getSubscribedEvents(): array
