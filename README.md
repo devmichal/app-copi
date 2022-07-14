@@ -26,11 +26,7 @@ change <b>.env.example</b> on <b>.env</b> and fill in the missing field
 
     make re-build
 
-Install all libraries:
-
-    composer install --dev
-
-Create jwt hash:
+### Generate JWT key
 
     openssl genrsa -out config/jwt/private.pem -aes256 4096
       
