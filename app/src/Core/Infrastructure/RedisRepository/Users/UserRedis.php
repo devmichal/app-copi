@@ -2,16 +2,13 @@
 
 namespace App\Core\Infrastructure\RedisRepository\Users;
 
-
 use App\Core\Infrastructure\RedisRepository\RedisConfig;
-
 
 final class UserRedis extends RedisConfig implements GetCacheTokenStatus, AddCacheTokenStatus
 {
     public const FIRST_WRONG_TOKEN = 1;
-    public const KEY_REDIS_USER    = 'users-';
-    public const TIMEOUT_TOKEN     = 840;
-
+    public const KEY_REDIS_USER = 'users-';
+    public const TIMEOUT_TOKEN = 840;
 
     public function setCacheIncorrectToken(string $idUser): void
     {

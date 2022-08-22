@@ -2,7 +2,6 @@
 
 namespace App\Tests\Core\Infrastructure\Security\AntiBrutForce;
 
-
 use App\Core\Infrastructure\RedisRepository\AntiBrutForce\BrutForceManagerCache;
 use App\Core\Infrastructure\Security\AntiBrutForce\HandlerFailLoginUser;
 use App\Shared\Domain\Exception\BrutForceLoginException;
@@ -13,11 +12,10 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 class HandlerFailLoginUserTest extends TestCase
 {
-    const SUM_EXCEED_LIMIT = 4;
-    const SUM_NO_EXCEED    = 2;
-    const ACTUAL_WRONG     = 3;
+    public const SUM_EXCEED_LIMIT = 4;
+    public const SUM_NO_EXCEED = 2;
+    public const ACTUAL_WRONG = 3;
 
-    /** @var HandlerFailLoginUser  */
     private HandlerFailLoginUser $handlerFailLoginUser;
 
     /** @var BrutForceManagerCache|mixed|\PHPUnit\Framework\MockObject\MockObject */
@@ -34,10 +32,10 @@ class HandlerFailLoginUserTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->brutForceManagerCache   = $this->createMock(BrutForceManagerCache::class);
-        $this->eventDispatcher         = $this->createMock(EventDispatcherInterface::class);
+        $this->brutForceManagerCache = $this->createMock(BrutForceManagerCache::class);
+        $this->eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
-        $this->authenticationFailure   = $this->createMock(AuthenticationFailureEvent::class);
+        $this->authenticationFailure = $this->createMock(AuthenticationFailureEvent::class);
         $this->authenticationException = $this->createMock(AuthenticationException::class);
 
         $this->authenticationFailure
@@ -62,8 +60,7 @@ class HandlerFailLoginUserTest extends TestCase
 
         $this->brutForceManagerCache->expects(self::once())
              ->method('setWrongLogin')
-             ->with(self::callback(fn(int $wrongLogin): bool =>
-                $wrongLogin === self::ACTUAL_WRONG
+             ->with(self::callback(fn (int $wrongLogin): bool => self::ACTUAL_WRONG === $wrongLogin
              ));
 
         $this->handlerFailLoginUser->addIncorrectLogin($this->authenticationFailure);
@@ -79,5 +76,4 @@ class HandlerFailLoginUserTest extends TestCase
 
         $this->handlerFailLoginUser->addIncorrectLogin($this->authenticationFailure);
     }
-
 }

@@ -2,9 +2,7 @@
 
 namespace App\Core\Application\Query\UserManagement\GetUserWallet;
 
-
 use App\Core\Application\Query\UserManagement\WalletDTO;
-
 
 final class UserWalletQueryHandler
 {

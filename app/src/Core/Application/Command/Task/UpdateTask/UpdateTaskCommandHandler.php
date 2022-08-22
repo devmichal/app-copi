@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Core\Application\Command\Task\UpdateTask;
 
-
 use App\Core\Application\Command\Task\UpdateTask\UpdateDataTimeTask\UpdateComponentTaskInterface;
 use App\Core\Domain\Logic\CalculatePayout\CalculatePayoutInterface;
 use App\Core\Infrastructure\Repository\Task\MatchTask;
@@ -12,42 +11,38 @@ use App\Shared\Domain\Exception\InvalidTask;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-
 final class UpdateTaskCommandHandler implements EventSubscriberInterface
 {
-
     public function __construct(
         private EntityManagerInterface $entityManager,
         private MatchTask $matchTask,
         private CalculatePayoutInterface $calculatePayout,
         private UpdateComponentTaskInterface $updateComponentTask
-    )
-    {}
+    ) {
+    }
 
     public static function getSubscribedEvents(): array
     {
-        return[
-          UpdateTaskCommand::NAME => 'updateTask'
+        return [
+          UpdateTaskCommand::NAME => 'updateTask',
         ];
     }
 
     /**
-     * @param UpdateTaskCommand $command
      * @throws InvalidTask
      */
     public function updateTask(UpdateTaskCommand $command): void // todo add to another event create, datetime, event-soursing
     {
-        $createTaskDTO  = $command->getCreateTaskDTO();
-        $client         = $createTaskDTO->getClient();
+        $createTaskDTO = $command->getCreateTaskDTO();
+        $client = $createTaskDTO->getClient();
 
-        $updatedTask    = $this->matchTask->foundTask($command->getTaskId());
+        $updatedTask = $this->matchTask->foundTask($command->getTaskId());
 
         if (!$updatedTask) {
-
             throw new InvalidTask('No found task');
         }
 
-        $paymentMoney  = $this->calculatePayout->myPayment(
+        $paymentMoney = $this->calculatePayout->myPayment(
             $client->getSalary(),
             $createTaskDTO->getNumberCountCharacter());
 

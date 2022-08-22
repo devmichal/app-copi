@@ -2,7 +2,6 @@
 
 namespace App\Core\Ports\Rest\TallyTaskComponent;
 
-
 use App\Core\Application\Query\Client\GetClients\GetClientsQuery;
 use App\Core\Application\Query\TypeText\GetTypeText\TypeTextQuery;
 use App\Shared\Infrastructure\ValueObject\TallyTask;
@@ -25,8 +24,7 @@ class TaskComponent extends AbstractController
     public function __construct(
         MessageBusInterface $queryBus,
         SerializerInterface $serializer
-    )
-    {
+    ) {
         $this->messageBus = $queryBus;
         $this->serializer = $serializer;
     }
@@ -36,11 +34,11 @@ class TaskComponent extends AbstractController
      */
     final public function indexAction(): JsonResponse
     {
-        $getClients  = new GetClientsQuery($this->getUser());
+        $getClients = new GetClientsQuery($this->getUser());
         $getTypeText = new TypeTextQuery($this->getUser());
 
         $client = $this->handle($getClients);
-        $text   = $this->handle($getTypeText);
+        $text = $this->handle($getTypeText);
 
         $tallyTask = new TallyTask($client, $text);
 
@@ -48,5 +46,4 @@ class TaskComponent extends AbstractController
 
         return JsonResponse::fromJsonString($serializerClient);
     }
-
 }

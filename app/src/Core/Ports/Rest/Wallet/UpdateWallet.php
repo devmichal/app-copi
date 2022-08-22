@@ -2,7 +2,6 @@
 
 namespace App\Core\Ports\Rest\Wallet;
 
-
 use App\Core\Application\Command\UserManagement\UserManagementCreate\UserManagementCommand;
 use App\Core\Infrastructure\Form\Wallet\WalletType;
 use App\Core\Ports\Rest\CreateRestApi;
@@ -23,9 +22,8 @@ class UpdateWallet extends CreateRestApi
     final public function indexAction(
         Request $request,
         EventDispatcherInterface $eventDispatcher
-    ): JsonResponse
-    {
-        $walletTask = $this->buildObject($request,WalletType::class);
+    ): JsonResponse {
+        $walletTask = $this->buildObject($request, WalletType::class);
 
         $eventDispatcher->dispatch(new UserManagementCommand(
            $this->getUser(),

@@ -2,7 +2,6 @@
 
 namespace App\Core\Infrastructure\Repository\Users;
 
-
 use App\Core\Domain\Model\Users\User;
 
 interface MatchUser

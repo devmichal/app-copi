@@ -2,12 +2,10 @@
 
 namespace App\Core\Application\Command\User\BlockUserAccount;
 
-
 use App\Core\Infrastructure\Repository\Users\MatchUser;
 use App\Shared\Domain\Exception\InvalidUser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-
 
 final class BlockUserCommandHandler implements EventSubscriberInterface
 {
@@ -17,20 +15,18 @@ final class BlockUserCommandHandler implements EventSubscriberInterface
 
     private EntityManagerInterface $entityManager;
 
-
     public function __construct(
         MatchUser $matchUser,
         EntityManagerInterface $entityManager
-    )
-    {
+    ) {
         $this->matchUser = $matchUser;
         $this->entityManager = $entityManager;
     }
 
     public static function getSubscribedEvents(): array
     {
-        return[
-          BlockUserCommand::NAME => 'disableAccount'
+        return [
+          BlockUserCommand::NAME => 'disableAccount',
         ];
     }
 
@@ -42,7 +38,6 @@ final class BlockUserCommandHandler implements EventSubscriberInterface
         $user = $this->matchUser->getUser($userCommand->getUsername(), self::FIELD);
 
         if (!$user) {
-
             throw new InvalidUser('User no exist');
         }
 

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Core\Application\Command\Client\UpdateClient;
-
 
 use App\Core\Application\Command\Client\UpdateClient\UpdateClientCommand;
 use App\Core\Application\Command\Client\UpdateClient\UpdateClientCommandHandler;
@@ -12,10 +10,8 @@ use App\Core\Infrastructure\Repository\Client\MatchClientInterface;
 use App\Tests\Core\Application\Command\Client\CreateClientDTOTest;
 use PHPUnit\Framework\TestCase;
 
-
 class UpdateClientCommandHandlerTest extends TestCase
 {
-    /** @var UpdateClientCommandHandler  */
     private UpdateClientCommandHandler $updateClientCommandHandler;
 
     /** @var ClientRepositoryInterface|\PHPUnit\Framework\MockObject\MockObject */
@@ -27,7 +23,7 @@ class UpdateClientCommandHandlerTest extends TestCase
     protected function setUp(): void
     {
         $this->matchClientInterface = $this->createMock(MatchClientInterface::class);
-        $this->clientRepository     = $this->createMock(ClientRepositoryInterface::class);
+        $this->clientRepository = $this->createMock(ClientRepositoryInterface::class);
 
         $this->updateClientCommandHandler = new UpdateClientCommandHandler(
             $this->matchClientInterface,
@@ -45,8 +41,7 @@ class UpdateClientCommandHandlerTest extends TestCase
 
         $this->clientRepository->expects(self::once())
              ->method('add')
-             ->with(self::callback(fn(Client $client): bool =>
-                $client->getName() === $updateClientCommand->getCreateClientDTO()->getName() &&
+             ->with(self::callback(fn (Client $client): bool => $client->getName() === $updateClientCommand->getCreateClientDTO()->getName() &&
                 $client->getCity() === $updateClientCommand->getCreateClientDTO()->getCity() &&
                 $client->getSalary() === $updateClientCommand->getCreateClientDTO()->getSalary()
              ));
@@ -61,5 +56,4 @@ class UpdateClientCommandHandlerTest extends TestCase
             'some client id'
         );
     }
-
 }

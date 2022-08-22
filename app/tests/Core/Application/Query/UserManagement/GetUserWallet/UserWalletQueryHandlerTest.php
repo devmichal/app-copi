@@ -2,7 +2,6 @@
 
 namespace App\Tests\Core\Application\Query\UserManagement\GetUserWallet;
 
-
 use App\Core\Application\Query\UserManagement\GetUserWallet\UserWalletQuery;
 use App\Core\Application\Query\UserManagement\GetUserWallet\UserWalletQueryHandler;
 use App\Core\Domain\Model\Users\User;
@@ -11,13 +10,12 @@ use PHPUnit\Framework\TestCase;
 
 class UserWalletQueryHandlerTest extends TestCase
 {
-    const CITY        = 'someCity';
-    const EARN_MONEY  = 12.3;
-    const BANK_NUMBER = '1234567890';
-    const BANK_NAME   = 'my-bank';
-    const STREET      = 'street';
+    public const CITY = 'someCity';
+    public const EARN_MONEY = 12.3;
+    public const BANK_NUMBER = '1234567890';
+    public const BANK_NAME = 'my-bank';
+    public const STREET = 'street';
 
-    /** @var UserWalletQueryHandler  */
     private UserWalletQueryHandler $userWalletQueryHandler;
 
     /** @var User|mixed|\PHPUnit\Framework\MockObject\MockObject */
@@ -28,7 +26,7 @@ class UserWalletQueryHandlerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->user   = $this->createMock(User::class);
+        $this->user = $this->createMock(User::class);
         $this->wallet = $this->createMock(Wallet::class);
 
         $this->createWallet();
@@ -44,7 +42,7 @@ class UserWalletQueryHandlerTest extends TestCase
 
         $command = new UserWalletQuery($this->user);
         $handler = new UserWalletQueryHandler();
-        $result  = $handler($command);
+        $result = $handler($command);
 
         $this->assertEquals(self::CITY, $result->getCity());
         $this->assertEquals(self::BANK_NUMBER, $result->getBankNumber());
@@ -65,7 +63,6 @@ class UserWalletQueryHandlerTest extends TestCase
         $this->wallet
             ->method('getCity')
             ->willReturn(self::CITY);
-
 
         $this->wallet
             ->method('getBankName')

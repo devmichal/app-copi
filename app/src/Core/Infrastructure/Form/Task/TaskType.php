@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Infrastructure\Form\Task;
-
 
 use App\Core\Application\Command\Task\CreateTaskDTO;
 use App\Core\Domain\Model\Client\Client;
@@ -14,7 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
 class TaskType extends AbstractType
 {
     final public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -23,11 +20,11 @@ class TaskType extends AbstractType
             ->add('titleTask', TextType::class)
             ->add('createdAt', TextType::class)
             ->add('deadLineAt', TextType::class)
-            ->add('client', EntityType::class,[
-                'class' => Client::class
+            ->add('client', EntityType::class, [
+                'class' => Client::class,
             ])
-                ->add('typeText', EntityType::class,[
-                'class' => TypeText::class
+                ->add('typeText', EntityType::class, [
+                'class' => TypeText::class,
             ])
             ->add('numberCountCharacter', TextType::class)
             ->add('status', CheckboxType::class)
@@ -37,8 +34,7 @@ class TaskType extends AbstractType
     final public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-           'data_class' => CreateTaskDTO::class
+           'data_class' => CreateTaskDTO::class,
         ]);
     }
-
 }

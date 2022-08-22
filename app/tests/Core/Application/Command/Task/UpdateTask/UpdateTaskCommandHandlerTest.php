@@ -15,12 +15,11 @@ use App\Shared\Domain\Exception\InvalidTask;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 
-
 class UpdateTaskCommandHandlerTest extends TestCase
 {
-    const TASK_ID    = 'some_id';
-    const PAYMENT    = 123.1;
-    const COUNT_TEXT = 1200;
+    public const TASK_ID = 'some_id';
+    public const PAYMENT = 123.1;
+    public const COUNT_TEXT = 1200;
 
     /** @var EntityManagerInterface|mixed|\PHPUnit\Framework\MockObject\MockObject */
     private $entityManager;
@@ -31,7 +30,6 @@ class UpdateTaskCommandHandlerTest extends TestCase
     /** @var CalculatePayoutInterface|mixed|\PHPUnit\Framework\MockObject\MockObject */
     private $calculatePayout;
 
-    /** @var UpdateTaskCommandHandler  */
     private UpdateTaskCommandHandler $updateTaskCommandHandler;
 
     /** @var Client|mixed|\PHPUnit\Framework\MockObject\MockObject */
@@ -45,11 +43,11 @@ class UpdateTaskCommandHandlerTest extends TestCase
 
     final protected function setUp(): void
     {
-        $this->entityManager       = $this->createMock(EntityManagerInterface::class);
-        $this->matchTask           = $this->createMock(MatchTask::class);
-        $this->calculatePayout     = $this->createMock(CalculatePayoutInterface::class);
-        $this->client              = $this->createMock(Client::class);
-        $this->user                = $this->createMock(User::class);
+        $this->entityManager = $this->createMock(EntityManagerInterface::class);
+        $this->matchTask = $this->createMock(MatchTask::class);
+        $this->calculatePayout = $this->createMock(CalculatePayoutInterface::class);
+        $this->client = $this->createMock(Client::class);
+        $this->user = $this->createMock(User::class);
         $this->updateComponentTask = $this->createMock(UpdateComponentTaskInterface::class);
 
         $this->updateTaskCommandHandler = new UpdateTaskCommandHandler(
@@ -73,7 +71,7 @@ class UpdateTaskCommandHandlerTest extends TestCase
     final public function testShouldUpdateTask(): void
     {
         $updateTaskCommand = $this->prepareTaskCommand();
-        $updateTask        = $updateTaskCommand->getCreateTaskDTO();
+        $updateTask = $updateTaskCommand->getCreateTaskDTO();
 
         $this->matchTask
              ->method('foundTask')
@@ -85,10 +83,9 @@ class UpdateTaskCommandHandlerTest extends TestCase
 
         $this->entityManager->expects(self::once())
             ->method('persist')
-            ->with(self::callback(fn(Task $task): bool =>
-                $task->getTitleTask() === $updateTask->getTitleTask() &&
-                $task->getWalletTask()->getMoney() === self::PAYMENT &&
-                $task->getNumberCountCharacter() === self::COUNT_TEXT
+            ->with(self::callback(fn (Task $task): bool => $task->getTitleTask() === $updateTask->getTitleTask() &&
+                self::PAYMENT === $task->getWalletTask()->getMoney() &&
+                self::COUNT_TEXT === $task->getNumberCountCharacter()
             ));
 
         $this->updateTaskCommandHandler->updateTask($updateTaskCommand);

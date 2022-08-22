@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Core\Infrastructure\Form\Client;
-
 
 use App\Core\Infrastructure\Form\Client\ClientType;
 use App\Tests\Core\Application\Command\Client\CreateClientDTOTest;
@@ -30,5 +28,4 @@ class ClientTypeTest extends TypeTestCase
         $this->assertEquals($formData->getSalary(), $dataForm->getSalary());
         $this->assertEquals($formData->getName(), $dataForm->getName());
     }
-
 }

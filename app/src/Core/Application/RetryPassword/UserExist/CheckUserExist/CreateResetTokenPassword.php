@@ -2,7 +2,6 @@
 
 namespace App\Core\Application\RetryPassword\UserExist\CheckUserExist;
 
-
 use App\Core\Application\Command\User\CreateResetTokenPassword\CreateResetTokenPasswordCommand;
 use App\Core\Application\RetryPassword\UserExist\SendTokenPasswordDTO;
 use App\Core\Infrastructure\Event\EventMessage\NewToken\NewTokenMessage;
@@ -12,7 +11,6 @@ use App\Shared\Domain\Exception\InvalidUser;
 use App\Shared\Infrastructure\Notification\FactoryEmil\FactoryEmail;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
-
 
 final class CreateResetTokenPassword implements CreateResetTokenPasswordInterface
 {
@@ -24,14 +22,12 @@ final class CreateResetTokenPassword implements CreateResetTokenPasswordInterfac
 
     private EventDispatcherInterface $eventDispatcher;
 
-
     public function __construct(
         MatchUser $matchUser,
         CreateResetTokenInterface $createResetToken,
         MessageBusInterface $messageBus,
         EventDispatcherInterface $eventDispatcher
-    )
-    {
+    ) {
         $this->matchUser = $matchUser;
         $this->createResetToken = $createResetToken;
         $this->messageBus = $messageBus;
@@ -39,7 +35,6 @@ final class CreateResetTokenPassword implements CreateResetTokenPasswordInterfac
     }
 
     /**
-     * @param SendTokenPasswordDTO $DTO
      * @throws InvalidUser
      */
     public function sendEmail(SendTokenPasswordDTO $DTO): void

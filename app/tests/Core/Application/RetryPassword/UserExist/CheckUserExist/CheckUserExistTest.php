@@ -2,12 +2,10 @@
 
 namespace App\Tests\Core\Application\RetryPassword\UserExist\CheckUserExist;
 
-
 use App\Core\Application\RetryPassword\UserExist\CheckUserExist\CreateResetTokenPassword;
 use App\Core\Application\RetryPassword\UserExist\SendTokenPasswordDTO;
 use App\Core\Domain\Model\Users\User;
 use App\Core\Infrastructure\Notification\NotificationEmil;
-use App\Core\Infrastructure\Notification\SendNotificationEmil\SendNotificationEmilInterface;
 use App\Core\Infrastructure\Repository\Users\MatchUser;
 use App\Core\Infrastructure\Security\ResetPassword\CreateResetToken\CreateResetTokenInterface;
 use App\Shared\Domain\Exception\InvalidUser;
@@ -17,9 +15,8 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class CheckUserExistTest extends TestCase
 {
-    const USER_EMAIL = 'some.email@gmail.com';
+    public const USER_EMAIL = 'some.email@gmail.com';
 
-    /** @var CreateResetTokenPassword  */
     private CreateResetTokenPassword $checkUserExist;
 
     /** @var MatchUser|mixed|\PHPUnit\Framework\MockObject\MockObject */
@@ -39,11 +36,11 @@ class CheckUserExistTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->matchUser        = $this->createMock(MatchUser::class);
-        $this->messageBus       = $this->createMock(MessageBusInterface::class);
-        $this->users            = $this->createMock(User::class);
+        $this->matchUser = $this->createMock(MatchUser::class);
+        $this->messageBus = $this->createMock(MessageBusInterface::class);
+        $this->users = $this->createMock(User::class);
         $this->createResetToken = $this->createMock(CreateResetTokenInterface::class);
-        $this->eventDispatcher  = $this->createMock(EventDispatcherInterface::class);
+        $this->eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
         $this->checkUserExist = new CreateResetTokenPassword(
             $this->matchUser,
@@ -64,26 +61,26 @@ class CheckUserExistTest extends TestCase
         $this->checkUserExist->sendEmail($this->createUserDTO());
     }
 
-  /*  public function testShouldSendEmailCorrectEmail()
-    {
-        $userExistDTO = $this->createUserDTO();
+    /*  public function testShouldSendEmailCorrectEmail()
+      {
+          $userExistDTO = $this->createUserDTO();
 
-        $this->matchUser
-            ->method('getUser')
-            ->willReturn($this->users);
+          $this->matchUser
+              ->method('getUser')
+              ->willReturn($this->users);
 
-        $this->users
-             ->method('getEmail')
-             ->willReturn(self::USER_EMAIL);
+          $this->users
+               ->method('getEmail')
+               ->willReturn(self::USER_EMAIL);
 
-        $this->messageBus->expects(self::once())
-            ->method('send')
-            ->with(self::callback(fn(NotificationEmil $notificationEmil): bool =>
-                $notificationEmil->getRecipientEmail() === $userExistDTO->getUser()
-            ));
+          $this->messageBus->expects(self::once())
+              ->method('send')
+              ->with(self::callback(fn(NotificationEmil $notificationEmil): bool =>
+                  $notificationEmil->getRecipientEmail() === $userExistDTO->getUser()
+              ));
 
-        $this->checkUserExist->sendEmail($userExistDTO);
-    }*/
+          $this->checkUserExist->sendEmail($userExistDTO);
+      }*/
 
     private function createUserDTO(): SendTokenPasswordDTO
     {
@@ -92,5 +89,4 @@ class CheckUserExistTest extends TestCase
 
         return $userDTO;
     }
-
 }

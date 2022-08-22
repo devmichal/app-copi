@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Ports\Rest\TypeText;
-
 
 use App\Core\Application\Command\TypeText\CreateTypeText\CreateTypeTextCommand;
 use App\Core\Application\Command\TypeText\DeleteTypeText\DeleteTypeTextCommand;
@@ -26,8 +24,7 @@ class CreateTypeText extends CreateRestApi
     final public function createAction(
         Request $request,
         EventDispatcherInterface $eventDispatcher
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $createForm = $this->buildObject($request, TypeTextType::class);
 
         $eventDispatcher->dispatch(new CreateTypeTextCommand(
@@ -45,8 +42,7 @@ class CreateTypeText extends CreateRestApi
         string $typeText,
         Request $request,
         EventDispatcherInterface $eventDispatcher
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $createForm = $this->buildObject($request, TypeTextType::class);
 
         $eventDispatcher->dispatch(new UpdateTypeTexCommand(
@@ -63,8 +59,7 @@ class CreateTypeText extends CreateRestApi
     final public function deleteAction(
         string $typeText,
         EventDispatcherInterface $eventDispatcher
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $eventDispatcher->dispatch(new DeleteTypeTextCommand(
             $typeText
         ), DeleteTypeTextCommand::NAME);

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Shared\Infrastructure\Http;
-
 
 final class HttpCode
 {

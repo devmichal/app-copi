@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Core\Application\Command\CreateTypeText\UpdateTypeText;
-
 
 use App\Core\Application\Command\TypeText\CreateTypeTextDTO;
 use App\Core\Application\Command\TypeText\UpdateTypeText\UpdateTypeTexCommand;
@@ -26,7 +24,7 @@ class UpdateTypeTexCommandHandlerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->entityManager     = $this->createMock(EntityManagerInterface::class);
+        $this->entityManager = $this->createMock(EntityManagerInterface::class);
         $this->findByOneTypeText = $this->createMock(FindByOneTypeText::class);
 
         $this->updateTypeTexCommandHandler = new UpdateTypeTexCommandHandler(
@@ -50,8 +48,7 @@ class UpdateTypeTexCommandHandlerTest extends TestCase
 
         $this->entityManager->expects(self::once())
             ->method('persist')
-            ->with(self::callback(fn(TypeText $typeText): bool =>
-                $typeText->getDestination() === $this->typeTexCommand()->getCreateTypeTextDTO()->getDestination()
+            ->with(self::callback(fn (TypeText $typeText): bool => $typeText->getDestination() === $this->typeTexCommand()->getCreateTypeTextDTO()->getDestination()
             ));
 
         $this->updateTypeTexCommandHandler->updateText($this->typeTexCommand());

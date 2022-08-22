@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Core\Infrastructure\Form\TypeText;
-
 
 use App\Core\Application\Command\TypeText\CreateTypeTextDTO;
 use App\Core\Infrastructure\Form\TypeText\TypeTextType;
@@ -10,8 +8,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class TypeTextTypeTest extends TypeTestCase
 {
-
-    const destination = 'some variable';
+    public const destination = 'some variable';
 
     public function testShouldCreateTypeTextType()
     {

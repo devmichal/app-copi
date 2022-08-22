@@ -1,13 +1,10 @@
 <?php
 
-
 namespace App\Core\Infrastructure\RedisRepository;
-
 
 abstract class RedisConfig
 {
     private \Redis $redis;
-
 
     public function __construct()
     {
@@ -16,7 +13,6 @@ abstract class RedisConfig
     }
 
     /**
-     * @param string $key
      * @param $data
      */
     final protected function createCache(string $key, $data, string $timeout): void
@@ -25,7 +21,6 @@ abstract class RedisConfig
     }
 
     /**
-     * @param string $key
      * @return false|mixed|string
      */
     final protected function readCache(string $key)
@@ -33,9 +28,6 @@ abstract class RedisConfig
         return $this->redis->get($key);
     }
 
-    /**
-     * @param string $key
-     */
     final protected function clearCache(string $key): void
     {
         $this->redis->delete($key);

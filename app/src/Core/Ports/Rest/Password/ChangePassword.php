@@ -2,7 +2,6 @@
 
 namespace App\Core\Ports\Rest\Password;
 
-
 use App\Core\Application\RetryPassword\ConfirmToken\ConfirmCorrectResetTokenPasswordInterface;
 use App\Core\Application\RetryPassword\NewPassword\AddNewUserPasswordInterface;
 use App\Core\Application\RetryPassword\UserExist\CheckUserExist\CreateResetTokenPasswordInterface;
@@ -15,7 +14,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class ChangePassword extends CreateRestApi
 {
     /**
@@ -24,8 +22,7 @@ class ChangePassword extends CreateRestApi
     final public function indexAction(
         Request $request,
         CreateResetTokenPasswordInterface $checkUserExist
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $userExistForm = $this->buildObject($request, SendTokenPasswordType::class);
 
         $checkUserExist->sendEmail($userExistForm);
@@ -39,8 +36,7 @@ class ChangePassword extends CreateRestApi
     final public function checkAction(
         Request $request,
         ConfirmCorrectResetTokenPasswordInterface $resetTokenPassword
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $userExistForm = $this->buildObject($request, ConfirmTokenPasswordType::class);
 
         $tokenCsrf = $resetTokenPassword->checkToken($userExistForm);
@@ -54,8 +50,7 @@ class ChangePassword extends CreateRestApi
     final public function changeAction(
         Request $request,
         AddNewUserPasswordInterface $addNewUserPassword
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $userPassword = $this->buildObject($request, NewUserPasswordType::class);
 
         $addNewUserPassword->addNewPassword($userPassword);

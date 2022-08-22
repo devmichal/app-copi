@@ -1,19 +1,16 @@
 <?php
 
-
 namespace App\Tests\Core\Domain\Logic\CalculatePayout;
-
 
 use App\Core\Domain\Logic\CalculatePayout\CalculatePayout;
 use PHPUnit\Framework\TestCase;
 
 class CalculatePayoutTest extends TestCase
 {
-    const SALARY_ONE = 24.5;
-    const SALARY_TWO = 10;
-    const LENGTH_ONE = 2200;
+    public const SALARY_ONE = 24.5;
+    public const SALARY_TWO = 10;
+    public const LENGTH_ONE = 2200;
 
-    /** @var CalculatePayout  */
     private CalculatePayout $calculatePayout;
 
     protected function setUp(): void

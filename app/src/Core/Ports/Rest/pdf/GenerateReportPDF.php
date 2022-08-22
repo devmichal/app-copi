@@ -2,7 +2,6 @@
 
 namespace App\Core\Ports\Rest\pdf;
 
-
 use App\Shared\Domain\Factory\ReportPdf\ConfigPdfReport;
 use App\Shared\Domain\Factory\ReportPdf\DataPdfReportInterface;
 use App\Shared\Infrastructure\ValueObject\FilterCreatedAtTask;
@@ -11,20 +10,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * @Route("/api")
  */
 class GenerateReportPDF extends AbstractController
 {
-
     /**
      * @Route("/pdf/report/{client}/{createdAt}/{deadlineAt}", methods={"GET"})
-     * @param string|null $createdAt
-     * @param string|null $deadlineAt
-     * @param string $client
-     * @param DataPdfReportInterface $dataPdfReport
-     * @return JsonResponse
+     *
      * @throws MpdfException
      */
     final public function indexAction(
@@ -32,10 +25,8 @@ class GenerateReportPDF extends AbstractController
         DataPdfReportInterface $dataPdfReport,
         ?string $createdAt = null,
         ?string $deadlineAt = null
-    ): JsonResponse
-    {
-
-        $mpdf       = ConfigPdfReport::config();
+    ): JsonResponse {
+        $mpdf = ConfigPdfReport::config();
         $filterData = new FilterCreatedAtTask($client, $createdAt, $deadlineAt);
 
         $html = $this->render(
@@ -43,7 +34,7 @@ class GenerateReportPDF extends AbstractController
             $dataPdfReport->getData($filterData, $this->getUser()));
 
         $mpdf->WriteHTML($html);
-        $mpdf->Output('report.pdf','D');
+        $mpdf->Output('report.pdf', 'D');
 
         return $this->json(null);
     }

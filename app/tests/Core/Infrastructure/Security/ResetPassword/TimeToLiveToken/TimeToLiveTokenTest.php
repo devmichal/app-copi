@@ -2,20 +2,18 @@
 
 namespace App\Tests\Core\Infrastructure\Security\ResetPassword\TimeToLiveToken;
 
-
 use App\Core\Infrastructure\Security\ResetPassword\TimeToLiveToken\TimeToLiveToken;
 use PHPUnit\Framework\TestCase;
 
 class TimeToLiveTokenTest extends TestCase
 {
-    const TIME = '- 13 minutes';
+    public const TIME = '- 13 minutes';
 
-    /** @var TimeToLiveToken  */
     private TimeToLiveToken $timeToLiveToken;
 
     protected function setUp(): void
     {
-       $this->timeToLiveToken = new TimeToLiveToken();
+        $this->timeToLiveToken = new TimeToLiveToken();
     }
 
     public function testShouldReturnFalseTokenIsStillActive()
@@ -33,7 +31,4 @@ class TimeToLiveTokenTest extends TestCase
 
         $this->assertTrue($result);
     }
-
-
-
 }

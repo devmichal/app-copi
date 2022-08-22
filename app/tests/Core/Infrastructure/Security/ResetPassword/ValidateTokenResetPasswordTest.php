@@ -2,7 +2,6 @@
 
 namespace App\Tests\Core\Infrastructure\Security\ResetPassword;
 
-
 use App\Core\Application\RetryPassword\UserExist\CheckUserExist\CreateResetTokenPasswordInterface;
 use App\Core\Domain\Model\Users\User;
 use App\Core\Infrastructure\Security\ResetPassword\AntiBrutForceToken\AntiBrutForceTokenInterface;
@@ -14,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 class ValidateTokenResetPasswordTest extends TestCase
 {
-    const USER_TOKEN = '3123412';
+    public const USER_TOKEN = '3123412';
 
     /** @var AntiBrutForceTokenInterface|mixed|\PHPUnit\Framework\MockObject\MockObject */
     private $antiBrutForceToken;
@@ -28,7 +27,6 @@ class ValidateTokenResetPasswordTest extends TestCase
     /** @var CreateResetTokenPasswordInterface|mixed|\PHPUnit\Framework\MockObject\MockObject */
     private $resetTokenPassword;
 
-    /** @var ValidateTokenResetPassword  */
     private ValidateTokenResetPassword $validateTokenResetPassword;
 
     /** @var User|mixed|\PHPUnit\Framework\MockObject\MockObject */
@@ -36,11 +34,11 @@ class ValidateTokenResetPasswordTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->antiBrutForceToken  = $this->createMock(AntiBrutForceTokenInterface::class);
-        $this->timeToLiveToken     = $this->createMock(TimeToLiveTokenInterface::class);
+        $this->antiBrutForceToken = $this->createMock(AntiBrutForceTokenInterface::class);
+        $this->timeToLiveToken = $this->createMock(TimeToLiveTokenInterface::class);
         $this->verifyTokenPassword = $this->createMock(VerifyTokenPasswordInterface::class);
-        $this->resetTokenPassword  = $this->createMock(CreateResetTokenPasswordInterface::class);
-        $this->user                = $this->createMock(User::class);
+        $this->resetTokenPassword = $this->createMock(CreateResetTokenPasswordInterface::class);
+        $this->user = $this->createMock(User::class);
         $this->prepareUsers();
 
         $this->validateTokenResetPassword = new ValidateTokenResetPassword(

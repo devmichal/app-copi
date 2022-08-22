@@ -2,7 +2,6 @@
 
 namespace App\Core\Infrastructure\Security\ResetPassword\CreateResetToken;
 
-
 use App\Core\Application\RetryPassword\UserExist\DTO\NewResetTokenDTO;
 
 interface CreateResetTokenInterface

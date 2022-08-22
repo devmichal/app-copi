@@ -2,10 +2,8 @@
 
 namespace App\Shared\Infrastructure\Notification\FactoryEmil;
 
-
 use App\Shared\Domain\Enum\Email\TypeEmail;
 use App\Shared\Infrastructure\Notification\NotificationEmil;
-
 
 final class FactoryEmail
 {
@@ -15,7 +13,7 @@ final class FactoryEmail
             TypeEmail::RESET_PASSWORD->value,
             $email,
             [
-                'newToken' => $userToken
+                'newToken' => $userToken,
             ]
         );
     }

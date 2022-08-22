@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Ports\Rest\Client;
-
 
 use App\Core\Application\Command\Client\CreateClient\CreateClientCommand;
 use App\Core\Application\Command\Client\DeleteClient\DeleteClientCommand;
@@ -26,8 +24,7 @@ class ClientController extends CreateRestApi
     final public function createAction(
         Request $request,
         EventDispatcherInterface $eventDispatcher
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $clientForm = $this->buildObject($request, ClientType::class);
 
         $eventDispatcher->dispatch(new CreateClientCommand(
@@ -45,8 +42,7 @@ class ClientController extends CreateRestApi
         Request $request,
         EventDispatcherInterface $eventDispatcher,
         string $client
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $clientForm = $this->buildObject($request, ClientType::class);
 
         $eventDispatcher->dispatch(new UpdateClientCommand(
@@ -63,12 +59,10 @@ class ClientController extends CreateRestApi
     final public function deleteAction(
         string $client,
         EventDispatcherInterface $eventDispatcher
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $eventDispatcher->dispatch(new DeleteClientCommand(
             $client), DeleteClientCommand::NAME);
 
         return $this->json(null, HttpCode::NO_CONTENT);
     }
-
 }

@@ -8,8 +8,6 @@ $finder = (new PhpCsFixer\Finder())
 return (new PhpCsFixer\Config())
     ->setRules([
         '@Symfony' => true,
-        '@PSR12' => true,
-        '@PSR1' => true
     ])
     ->setFinder($finder)
 ;

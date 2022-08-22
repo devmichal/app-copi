@@ -1,23 +1,17 @@
 <?php
 
-
 namespace App\Core\Application\Query\TypeText\GetTypeText;
-
 
 use App\Core\Application\Query\TypeText\TypeTextDTO;
 use App\Core\Infrastructure\Repository\TypeText\MatchTextType;
-
 
 final class TypeTextQueryHandler
 {
     private MatchTextType $matchTextType;
 
-
     public function __construct(
         MatchTextType $matchTextType
-    )
-    {
-
+    ) {
         $this->matchTextType = $matchTextType;
     }
 
@@ -27,7 +21,6 @@ final class TypeTextQueryHandler
 
         $buildTable = [];
         foreach ($typeTexts as $typeText) {
-
             $buildTable[] = TypeTextDTO::fromEntity($typeText);
         }
 

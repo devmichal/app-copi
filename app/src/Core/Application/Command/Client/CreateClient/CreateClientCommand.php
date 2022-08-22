@@ -14,9 +14,8 @@ final class CreateClientCommand
     public function __construct(
         private CreateClientDTO $clientDTO,
         private User $user
-    ){
+    ) {
     }
-
 
     public function getCreateClientDTO(): CreateClientDTO
     {

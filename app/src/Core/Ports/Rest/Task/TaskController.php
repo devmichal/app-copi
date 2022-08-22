@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Ports\Rest\Task;
-
 
 use App\Core\Application\Command\Task\CreateTask\CreateTaskCommand;
 use App\Core\Application\Command\Task\DeleteTask\DeleteTaskCommand;
@@ -15,7 +13,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * @Route("/api")
  */
@@ -27,8 +24,7 @@ class TaskController extends CreateRestApi
     final public function indexAction(
         Request $request,
         EventDispatcherInterface $eventDispatcher
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $taskForm = $this->buildObject($request, TaskType::class);
 
         $eventDispatcher->dispatch(new CreateTaskCommand(
@@ -46,8 +42,7 @@ class TaskController extends CreateRestApi
         string $task,
         Request $request,
         EventDispatcherInterface $eventDispatcher
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $taskForm = $this->buildObject($request, TaskType::class);
 
         $eventDispatcher->dispatch(new UpdateTaskCommand(
@@ -64,8 +59,7 @@ class TaskController extends CreateRestApi
     final public function deleteAction(
         string $task,
         EventDispatcherInterface $eventDispatcher
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $eventDispatcher->dispatch(new DeleteTaskCommand($task), DeleteTaskCommand::NAME);
 
         return $this->json(null, HttpCode::NO_CONTENT);

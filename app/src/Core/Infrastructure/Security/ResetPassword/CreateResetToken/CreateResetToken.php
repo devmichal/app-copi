@@ -2,18 +2,14 @@
 
 namespace App\Core\Infrastructure\Security\ResetPassword\CreateResetToken;
 
-
 use App\Core\Application\RetryPassword\UserExist\DTO\NewResetTokenDTO;
-
 
 final class CreateResetToken implements CreateResetTokenInterface
 {
     public const MIN_NUMBER = 10000000;
     public const MAX_NUMBER = 99999999;
 
-
     /**
-     * @return NewResetTokenDTO
      * @throws \Exception
      */
     public function createToken(): NewResetTokenDTO

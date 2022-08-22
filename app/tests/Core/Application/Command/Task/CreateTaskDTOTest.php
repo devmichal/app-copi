@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Core\Application\Command\Task;
-
 
 use App\Core\Application\Command\Task\CreateTaskDTO;
 use App\Core\Domain\Model\Client\Client;

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Application\Command\Client\UpdateClient;
 
-
 use App\Core\Application\Command\Client\CreateClientDTO;
-
 
 final class UpdateClientCommand
 {
@@ -15,8 +13,7 @@ final class UpdateClientCommand
     public function __construct(
         private CreateClientDTO $clientDTO,
         private string $client
-    ){
-
+    ) {
     }
 
     public function getCreateClientDTO(): CreateClientDTO

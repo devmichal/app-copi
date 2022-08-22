@@ -6,22 +6,19 @@ use App\Core\Infrastructure\Service\AggregateDate\SelectDaysCreatedAt;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
-
 class SelectDaysCreatedAtTest extends TestCase
 {
     public const START_CREATED = '2021-05-10';
-
 
     private string $actualDate;
 
     private string $lastDay;
 
-
     final protected function setUp(): void
     {
-        $newDate          = new DateTime();
+        $newDate = new DateTime();
         $this->actualDate = $newDate->format('Y-m').'-01';
-        $this->lastDay    = $newDate->format('Y-m').'-'.date('t', strtotime($newDate->format('Y-m')));
+        $this->lastDay = $newDate->format('Y-m').'-'.date('t', strtotime($newDate->format('Y-m')));
     }
 
     final public function testShouldReturnFirstDayOfMonth(): void

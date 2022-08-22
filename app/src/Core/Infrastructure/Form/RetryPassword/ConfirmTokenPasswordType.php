@@ -2,7 +2,6 @@
 
 namespace App\Core\Infrastructure\Form\RetryPassword;
 
-
 use App\Core\Application\RetryPassword\ConfirmToken\DTO\ConfirmTokenPasswordDTO;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,8 +21,7 @@ class ConfirmTokenPasswordType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-           'data_class' => ConfirmTokenPasswordDTO::class
+           'data_class' => ConfirmTokenPasswordDTO::class,
         ]);
     }
-
 }

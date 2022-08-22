@@ -2,16 +2,14 @@
 
 namespace App\Tests\Core\Infrastructure\Security\ResetPassword\AntiBrutForceToken;
 
-
 use App\Core\Infrastructure\RedisRepository\Users\GetCacheTokenStatus;
 use App\Core\Infrastructure\Security\ResetPassword\AntiBrutForceToken\AntiBrutForceToken;
 use PHPUnit\Framework\TestCase;
 
 class AntiBrutForceTokenTest extends TestCase
 {
-    const ID_USER = 'somUniqId';
+    public const ID_USER = 'somUniqId';
 
-    /** @var AntiBrutForceToken  */
     private AntiBrutForceToken $antiBrutForceToken;
 
     /** @var GetCacheTokenStatus|mixed|\PHPUnit\Framework\MockObject\MockObject */
@@ -43,6 +41,4 @@ class AntiBrutForceTokenTest extends TestCase
 
         $this->assertTrue($result);
     }
-
-
 }

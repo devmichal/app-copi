@@ -2,19 +2,15 @@
 
 namespace App\Core\Infrastructure\Security\ResetPassword\CreateCsrfToken;
 
-
 use App\Core\Infrastructure\RedisRepository\Csrf\CreateCsrfSession;
-
 
 final class CreateCsrfToken implements CreateCsrfTokenInterface
 {
     private CreateCsrfSession $createCsrfSession;
 
-
     public function __construct(
         CreateCsrfSession $createCsrfSession
-    )
-    {
+    ) {
         $this->createCsrfSession = $createCsrfSession;
     }
 

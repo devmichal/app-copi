@@ -13,13 +13,13 @@ final class DeleteClientCommandHandler implements EventSubscriberInterface
     public function __construct(
        private EntityManagerInterface $entityManager,
        private MatchClientInterface $matchClient
-    ){
+    ) {
     }
 
     public static function getSubscribedEvents(): array
     {
-        return[
-          DeleteClientCommand::NAME => 'deleteClient'
+        return [
+          DeleteClientCommand::NAME => 'deleteClient',
         ];
     }
 

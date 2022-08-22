@@ -2,7 +2,6 @@
 
 namespace App\Shared\Domain\Factory\ReportPdf;
 
-
 use App\Core\Domain\Model\Users\User;
 use App\Shared\Infrastructure\ValueObject\FilterCreatedAtTask;
 

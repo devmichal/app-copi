@@ -2,7 +2,6 @@
 
 namespace App\Tests\Core\Application\Command\UserManagement\UserManagementCreate;
 
-
 use App\Core\Application\Command\UserManagement\UserManagementCreate;
 use App\Core\Application\Command\UserManagement\UserManagementCreate\UserManagementCommand;
 use App\Core\Application\Command\UserManagement\UserManagementCreate\UserManagementCommandHandler;
@@ -16,7 +15,6 @@ class UserManagementCommandHandlerTest extends TestCase
     /** @var EntityManagerInterface|mixed|\PHPUnit\Framework\MockObject\MockObject */
     private $entityManager;
 
-    /** @var UserManagementCommandHandler  */
     private UserManagementCommandHandler $userManagementCommandHandler;
 
     /** @var User|mixed|\PHPUnit\Framework\MockObject\MockObject */
@@ -24,7 +22,7 @@ class UserManagementCommandHandlerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->users         = $this->createMock(User::class);
+        $this->users = $this->createMock(User::class);
         $this->entityManager = $this->createMock(EntityManagerInterface::class);
 
         $this->userManagementCommandHandler = new UserManagementCommandHandler(
@@ -38,9 +36,8 @@ class UserManagementCommandHandlerTest extends TestCase
 
         $this->entityManager->expects(self::once())
             ->method('persist')
-            ->with(self::callback(fn(Wallet $wallet): bool =>
-                $wallet->getBankNumber() === $walletDTO->getManagementCreate()->getBankNumber() &&
-                $wallet->getBankName()   === $walletDTO->getManagementCreate()->getBankName()
+            ->with(self::callback(fn (Wallet $wallet): bool => $wallet->getBankNumber() === $walletDTO->getManagementCreate()->getBankNumber() &&
+                $wallet->getBankName() === $walletDTO->getManagementCreate()->getBankName()
             ));
 
         $this->userManagementCommandHandler->userWallet($walletDTO);
@@ -64,5 +61,4 @@ class UserManagementCommandHandlerTest extends TestCase
             $managementCreate
         );
     }
-
 }

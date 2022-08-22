@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Application\Command\TypeText\DeleteTypeText;
-
 
 final class DeleteTypeTextCommand
 {
@@ -12,17 +10,12 @@ final class DeleteTypeTextCommand
 
     public function __construct(
         string $typeText
-    )
-    {
+    ) {
         $this->typeText = $typeText;
     }
 
-    /**
-     * @return string
-     */
     public function getTypeText(): string
     {
         return $this->typeText;
     }
-
 }

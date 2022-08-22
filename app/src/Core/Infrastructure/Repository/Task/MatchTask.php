@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Infrastructure\Repository\Task;
-
 
 use App\Core\Domain\Model\Task\Task;
 

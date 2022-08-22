@@ -12,5 +12,4 @@ final class ConditionsUploadFile
         'image/jpeg',
         'application/msword',
     ];
-
 }

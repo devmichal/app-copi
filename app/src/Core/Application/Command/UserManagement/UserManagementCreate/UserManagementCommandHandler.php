@@ -2,28 +2,23 @@
 
 namespace App\Core\Application\Command\UserManagement\UserManagementCreate;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-
 final class UserManagementCommandHandler implements EventSubscriberInterface
 {
-
     private EntityManagerInterface $entityManager;
-
 
     public function __construct(
         EntityManagerInterface $entityManager
-    )
-    {
+    ) {
         $this->entityManager = $entityManager;
     }
 
     public static function getSubscribedEvents(): array
     {
-        return[
-          UserManagementCommand::NAME => 'userWallet'
+        return [
+          UserManagementCommand::NAME => 'userWallet',
         ];
     }
 

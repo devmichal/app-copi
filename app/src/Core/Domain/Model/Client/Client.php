@@ -1,15 +1,12 @@
 <?php
 
-
 namespace App\Core\Domain\Model\Client;
-
 
 use App\Core\Application\Command\Client\CreateClientDTO;
 use App\Core\Domain\Model\Client\GS\ClientGS;
 use App\Core\Domain\Model\Users\User;
 use DateTime;
 use Doctrine\Common\Collections\Collection;
-
 
 class Client
 {
@@ -39,33 +36,29 @@ class Client
 
     private bool $gross;
 
-
     public function __construct()
     {
-        $this->id          = uuid_create();
-        $this->createAt    = new DateTime();
+        $this->id = uuid_create();
+        $this->createAt = new DateTime();
         $this->numberHouse = 0;
-        $this->gross       = false;
+        $this->gross = false;
     }
 
     final public function handler(
         CreateClientDTO $createClientDTO
-    ): void
-    {
-        $this->name        = $createClientDTO->getName();
-        $this->city        = $createClientDTO->getCity();
-        $this->street      = $createClientDTO->getStreet();
-        $this->zipCode     = $createClientDTO->getZipCode();
-        $this->taxNumber   = $createClientDTO->getTaxNumber();
-        $this->salary      = $createClientDTO->getSalary();
-        $this->gross       = $createClientDTO->isGross();
+    ): void {
+        $this->name = $createClientDTO->getName();
+        $this->city = $createClientDTO->getCity();
+        $this->street = $createClientDTO->getStreet();
+        $this->zipCode = $createClientDTO->getZipCode();
+        $this->taxNumber = $createClientDTO->getTaxNumber();
+        $this->salary = $createClientDTO->getSalary();
+        $this->gross = $createClientDTO->isGross();
     }
 
     final public function handlerUser(
         User $user
-    ): void
-    {
+    ): void {
         $this->user = $user;
     }
-
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Infrastructure\Repository\TypeText;
-
 
 use App\Core\Domain\Model\TypeText\TypeText;
 use App\Core\Domain\Model\Users\User;
@@ -11,7 +9,6 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class TypeTextRepository extends ServiceEntityRepository implements FindByOneTypeText, FindByTypeText, MatchTextType
 {
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, TypeText::class);

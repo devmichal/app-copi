@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Ports\Cli;
-
 
 use App\Core\Application\Command\User\CreateUserDTO;
 use App\Core\Domain\Model\Users\User;
@@ -11,14 +9,12 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
 class BuildFakeDataTable extends Command
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
         string $name = null
-    )
-    {
+    ) {
         parent::__construct($name);
     }
 
@@ -49,5 +45,4 @@ class BuildFakeDataTable extends Command
 
         return 1;
     }
-
 }

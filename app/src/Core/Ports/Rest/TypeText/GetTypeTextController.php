@@ -1,18 +1,14 @@
 <?php
 
-
 namespace App\Core\Ports\Rest\TypeText;
-
 
 use App\Core\Application\Query\TypeText\GetTypeText\TypeTextQuery;
 use App\Core\Ports\Rest\QueryApi;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class GetTypeTextController extends QueryApi
 {
-
     /**
      * @Route("/api/typeText", methods={"GET"})
      */
@@ -22,5 +18,4 @@ class GetTypeTextController extends QueryApi
 
         return $this->serializeQueryObject($typeText);
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace App\Tests\Core\Application\Command\User\BlockUserAccount;
 
-
 use App\Core\Application\Command\User\BlockUserAccount\BlockUserCommand;
 use App\Core\Application\Command\User\BlockUserAccount\BlockUserCommandHandler;
 use App\Core\Domain\Model\Users\User;
@@ -19,7 +18,6 @@ class BlockUserCommandHandlerTest extends TestCase
     /** @var EntityManagerInterface|mixed|\PHPUnit\Framework\MockObject\MockObject */
     private $entityManager;
 
-    /** @var BlockUserCommandHandler  */
     private BlockUserCommandHandler $blockUserCommandHandler;
 
     /** @var User|mixed|\PHPUnit\Framework\MockObject\MockObject */
@@ -27,9 +25,9 @@ class BlockUserCommandHandlerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->matchUser     = $this->createMock(MatchUser::class);
+        $this->matchUser = $this->createMock(MatchUser::class);
         $this->entityManager = $this->createMock(EntityManagerInterface::class);
-        $this->user          = $this->createMock(User::class);
+        $this->user = $this->createMock(User::class);
 
         $this->blockUserCommandHandler = new BlockUserCommandHandler(
             $this->matchUser,
@@ -52,8 +50,7 @@ class BlockUserCommandHandlerTest extends TestCase
 
         $this->entityManager->expects(self::once())
             ->method('persist')
-            ->with(self::callback(fn(User $user): bool =>
-                $user->isEnabled() === false
+            ->with(self::callback(fn (User $user): bool => false === $user->isEnabled()
             ));
 
         $this->blockUserCommandHandler->disableAccount($this->createBlockUserCommand());
@@ -63,5 +60,4 @@ class BlockUserCommandHandlerTest extends TestCase
     {
         return new BlockUserCommand('someUsername');
     }
-
 }

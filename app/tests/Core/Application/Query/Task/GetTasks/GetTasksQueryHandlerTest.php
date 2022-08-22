@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Core\Application\Query\Task\GetTasks;
-
 
 use App\Core\Application\Command\Task\CreateTaskDTO;
 use App\Core\Application\Query\Task\GetTasks\GetTasksQuery;
@@ -14,11 +12,10 @@ use App\Core\Domain\Model\Users\User;
 use App\Core\Infrastructure\Repository\Task\GetUserTasks;
 use PHPUnit\Framework\TestCase;
 
-
 class GetTasksQueryHandlerTest extends TestCase
 {
-    const COUNT_TEXT = 1000;
-    const PAYMENT    = 141;
+    public const COUNT_TEXT = 1000;
+    public const PAYMENT = 141;
 
     /** @var GetUserTasks|\PHPUnit\Framework\MockObject\MockObject */
     private $getUserTasks;
@@ -35,20 +32,20 @@ class GetTasksQueryHandlerTest extends TestCase
     protected function setUp(): void
     {
         $this->getUserTasks = $this->createMock(GetUserTasks::class);
-        $this->user         = $this->createMock(User::class);
-        $this->client       = $this->createMock(Client::class);
-        $this->typeText     = $this->createMock(TypeText::class);
+        $this->user = $this->createMock(User::class);
+        $this->client = $this->createMock(Client::class);
+        $this->typeText = $this->createMock(TypeText::class);
     }
 
     final public function testShouldReturnEmptyArray(): void
     {
         $this->getUserTasks
              ->method('tasks')
-             ->willReturn(array());
+             ->willReturn([]);
 
         $command = new GetTasksQuery(new User());
         $handler = new GetTasksQueryHandler($this->getUserTasks);
-        $result  = $handler($command);
+        $result = $handler($command);
 
         $this->assertEmpty($result);
     }
@@ -61,7 +58,7 @@ class GetTasksQueryHandlerTest extends TestCase
 
         $command = new GetTasksQuery(new User());
         $handler = new GetTasksQueryHandler($this->getUserTasks);
-        $result  = $handler($command);
+        $result = $handler($command);
 
         $this->assertIsArray($result);
         $this->assertEquals(self::COUNT_TEXT, $result[0]->getNumberCountCharacter());
@@ -79,7 +76,6 @@ class GetTasksQueryHandlerTest extends TestCase
         $task->factoryTask($createTaskDTO, 10);
         $task->updateTaskDate($createTaskDTO);
 
-        return array($task);
+        return [$task];
     }
-
 }

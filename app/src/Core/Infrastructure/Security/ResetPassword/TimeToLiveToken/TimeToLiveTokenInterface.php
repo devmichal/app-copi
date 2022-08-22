@@ -2,9 +2,7 @@
 
 namespace App\Core\Infrastructure\Security\ResetPassword\TimeToLiveToken;
 
-
 use DateTime;
-
 
 interface TimeToLiveTokenInterface
 {

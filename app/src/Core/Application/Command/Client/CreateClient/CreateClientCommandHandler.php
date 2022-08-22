@@ -12,13 +12,13 @@ final class CreateClientCommandHandler implements EventSubscriberInterface
 {
     public function __construct(
        private ClientRepositoryInterface $clientRepository
-    ){
+    ) {
     }
 
     public static function getSubscribedEvents(): array
     {
-        return[
-          CreateClientCommand::NAME => 'createClient'
+        return [
+          CreateClientCommand::NAME => 'createClient',
         ];
     }
 

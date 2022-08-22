@@ -15,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UploadFile extends AbstractController
 {
-
     /**
      * @Route("/uplopad/files/{task}", methods={"POST"})
      */
@@ -23,10 +22,8 @@ class UploadFile extends AbstractController
         Request $request,
         string $task,
         EventDispatcherInterface $eventDispatcher
-    ): JsonResponse
-    {
+    ): JsonResponse {
         if ($request->files->get('file')) {
-
             $eventDispatcher->dispatch(new UploadFileCommand(
                 $request->files->get('file'),
                 $task

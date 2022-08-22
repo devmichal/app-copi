@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Core\Application\Command\Client\CreateClient;
-
 
 use App\Core\Application\Command\Client\CreateClient\CreateClientCommand;
 use App\Core\Application\Command\Client\CreateClient\CreateClientCommandHandler;
@@ -36,8 +34,7 @@ class CreateClientCommandHandlerTest extends TestCase
 
         $this->clientRepository->expects(self::once())
              ->method('add')
-             ->with(self::callback(fn(Client $client): bool =>
-                $client->getName() === $createClientDTO->getName() &&
+             ->with(self::callback(fn (Client $client): bool => $client->getName() === $createClientDTO->getName() &&
                 $client->getTaxNumber() === $createClientDTO->getTaxNumber() &&
                 $client->getUser()->getId() === $createClientCommand->getUser()->getId() &&
                 $client->getSalary() === $createClientDTO->getSalary()

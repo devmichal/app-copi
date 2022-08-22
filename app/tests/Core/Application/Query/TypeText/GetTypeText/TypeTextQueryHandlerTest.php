@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Core\Application\Query\TypeText\GetTypeText;
-
 
 use App\Core\Application\Command\TypeText\CreateTypeTextDTO;
 use App\Core\Application\Query\TypeText\GetTypeText\TypeTextQuery;
@@ -14,8 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class TypeTextQueryHandlerTest extends TestCase
 {
-
-    const DESCRIPTION = 'some_description';
+    public const DESCRIPTION = 'some_description';
 
     /** @var MatchTextType|\PHPUnit\Framework\MockObject\MockObject */
     private $matchTextType;
@@ -34,7 +31,7 @@ class TypeTextQueryHandlerTest extends TestCase
     {
         $command = new TypeTextQuery($this->user);
         $handler = new TypeTextQueryHandler($this->matchTextType);
-        $result  = $handler($command);
+        $result = $handler($command);
 
         $this->assertEmpty($result);
         $this->assertEquals(0, count($result));
@@ -48,7 +45,7 @@ class TypeTextQueryHandlerTest extends TestCase
 
         $command = new TypeTextQuery($this->user);
         $handler = new TypeTextQueryHandler($this->matchTextType);
-        $result  = $handler($command);
+        $result = $handler($command);
 
         $this->assertIsArray($result);
         $this->assertEquals(2, count($result));
@@ -60,13 +57,12 @@ class TypeTextQueryHandlerTest extends TestCase
         $createTypeText = new CreateTypeTextDTO();
         $createTypeText->setDestination(self::DESCRIPTION);
 
-        $firstType  = new TypeText();
+        $firstType = new TypeText();
         $firstType->handlerDTO($createTypeText);
 
         $secondType = new TypeText();
         $secondType->handlerDTO($createTypeText);
 
-        return array($firstType, $secondType);
+        return [$firstType, $secondType];
     }
-
 }

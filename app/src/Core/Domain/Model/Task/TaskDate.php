@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App\Core\Domain\Model\Task;
-
 
 use App\Core\Application\Command\Task\CreateTaskDTO;
 use App\Core\Domain\Logic\TransformDate\TransformDate;
 use App\Core\Domain\Model\Task\GS\TaskDateGS;
 use DateTime;
-
 
 final class TaskDate
 {
@@ -27,13 +24,12 @@ final class TaskDate
      */
     public function __construct(
         CreateTaskDTO $createTaskDTO
-    )
-    {
+    ) {
         $deadlineAt = $createTaskDTO->getDeadLineAt() ?: '+1 week';
 
-        $this->createAt     = TransformDate::createdAt($createTaskDTO->getCreatedAt());
+        $this->createAt = TransformDate::createdAt($createTaskDTO->getCreatedAt());
         $this->finishTaskAt = new DateTime();
-        $this->taskDateAt   = new DateTime();
-        $this->deadLineAt   = new DateTime($deadlineAt);
+        $this->taskDateAt = new DateTime();
+        $this->deadLineAt = new DateTime($deadlineAt);
     }
 }

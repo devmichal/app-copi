@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Domain\Model\Users;
-
 
  use App\Core\Application\Command\User\CreateUserDTO;
  use App\Core\Domain\Model\Users\GS\UserGS;
@@ -11,9 +9,9 @@ namespace App\Core\Domain\Model\Users;
  use Doctrine\Common\Collections\Collection;
  use Symfony\Component\Security\Core\User\UserInterface;
 
- /**
-  * @method string getUserIdentifier()
-  */
+/**
+ * @method string getUserIdentifier()
+ */
 class User implements UserInterface
 {
     use UserGS;
@@ -54,47 +52,44 @@ class User implements UserInterface
 
     private DateTime $disabledAccount;
 
-
     public function __construct()
     {
-        $this->id        = uuid_create();
+        $this->id = uuid_create();
         $this->createdAt = new \DateTime();
-        $this->wallet    = new Wallet();
-        $this->enabled   = false;
+        $this->wallet = new Wallet();
+        $this->enabled = false;
     }
 
     final public function createUsers(
         CreateUserDTO $createUserDTO
-    ): void
-    {
-        $this->wallet    = new Wallet();
-        $this->username  = $createUserDTO->getUsername();
+    ): void {
+        $this->wallet = new Wallet();
+        $this->username = $createUserDTO->getUsername();
         $this->firstName = $createUserDTO->getFirstName();
-        $this->lastName  = $createUserDTO->getLastName();
-        $this->email     = $createUserDTO->getEmail();
-        $this->roles     = $createUserDTO->getRoles();
-        $this->enabled   = $createUserDTO->isEnable();
+        $this->lastName = $createUserDTO->getLastName();
+        $this->email = $createUserDTO->getEmail();
+        $this->roles = $createUserDTO->getRoles();
+        $this->enabled = $createUserDTO->isEnable();
     }
 
     final public function addPassword(
         string $passwordDTO
-    ): void
-    {
-        $this->password         = password_hash($passwordDTO, PASSWORD_BCRYPT);
+    ): void {
+        $this->password = password_hash($passwordDTO, PASSWORD_BCRYPT);
         $this->changePasswordAt = new \DateTime();
-        $this->codeAuth         = uuid_create();
-        $this->enabled          = true;
+        $this->codeAuth = uuid_create();
+        $this->enabled = true;
     }
 
     final public function disableAccount(): void
     {
         $this->disabledAccount = new \DateTime();
-        $this->enabled         = false;
+        $this->enabled = false;
     }
 
     final public function newTokenResetPassword(string $hashToken): void
     {
-        $this->codeAuth   = $hashToken;
+        $this->codeAuth = $hashToken;
         $this->dateAuthAt = new \DateTime();
     }
 
@@ -103,9 +98,7 @@ class User implements UserInterface
         $this->enabled = $enabled;
     }
 
-     final public function __call($name, $arguments): void
-     {
-
-     }
-
- }
+    final public function __call($name, $arguments): void
+    {
+    }
+}

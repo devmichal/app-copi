@@ -6,7 +6,6 @@ use App\Core\Application\RetryPassword\NewPassword\DTO\NewUserPasswordDTO;
 
 final class NewUserPasswordDTOTest
 {
-
     public static function createUserData(): NewUserPasswordDTO
     {
         $dto = new NewUserPasswordDTO();

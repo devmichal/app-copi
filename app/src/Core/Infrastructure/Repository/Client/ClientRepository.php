@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Infrastructure\Repository\Client;
-
 
 use App\Core\Domain\Model\Client\Client;
 use App\Core\Domain\Model\Users\User;
@@ -11,7 +9,6 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class ClientRepository extends ServiceEntityRepository implements MatchClientInterface, ClientRepositoryInterface, UserClients
 {
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Client::class);
@@ -37,6 +34,7 @@ class ClientRepository extends ServiceEntityRepository implements MatchClientInt
             ->setParameter('user', $user)
             ->orderBy('c.createAt', 'DESC')
             ;
+
         return $qb->getQuery()->getResult();
     }
 }

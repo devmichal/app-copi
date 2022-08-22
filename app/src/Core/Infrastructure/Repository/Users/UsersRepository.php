@@ -2,11 +2,9 @@
 
 namespace App\Core\Infrastructure\Repository\Users;
 
-
 use App\Core\Domain\Model\Users\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
 
 class UsersRepository extends ServiceEntityRepository implements MatchUser
 {

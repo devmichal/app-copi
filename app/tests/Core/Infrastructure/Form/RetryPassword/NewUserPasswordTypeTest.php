@@ -6,10 +6,8 @@ use App\Core\Infrastructure\Form\RetryPassword\NewUserPasswordType;
 use App\Tests\Core\Application\RetryPassword\NewPassword\DTO\NewUserPasswordDTOTest;
 use Symfony\Component\Form\Test\TypeTestCase;
 
-
 class NewUserPasswordTypeTest extends TypeTestCase
 {
-
     public function testShouldReturnFormNewPassword()
     {
         $formData = NewUserPasswordDTOTest::createUserData();

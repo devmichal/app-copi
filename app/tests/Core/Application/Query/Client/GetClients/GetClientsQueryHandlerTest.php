@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Core\Application\Query\Client\GetClients;
-
 
 use App\Core\Application\Query\Client\ClientDTO;
 use App\Core\Application\Query\Client\GetClients\GetClientsQuery;
@@ -13,12 +11,10 @@ use App\Core\Infrastructure\Repository\Client\UserClients;
 use App\Tests\Core\Application\Command\Client\CreateClientDTOTest;
 use PHPUnit\Framework\TestCase;
 
-
 class GetClientsQueryHandlerTest extends TestCase
 {
     public const PAYMENT_ONE = 12.1;
     public const PAYMENT_TWO = 41.2;
-
 
     /** @var UserClients|\PHPUnit\Framework\MockObject\MockObject */
     private $userClients;
@@ -28,7 +24,6 @@ class GetClientsQueryHandlerTest extends TestCase
 
     /** @var Client|mixed|\PHPUnit\Framework\MockObject\MockObject */
     private $clientTwo;
-
 
     protected function setUp(): void
     {
@@ -67,10 +62,9 @@ class GetClientsQueryHandlerTest extends TestCase
             ->method('getSalary')
             ->willReturn(self::PAYMENT_TWO);
 
-        $clientOne->handler(CreateClientDTOTest::createClient(),);
-        $clientTwo->handler(CreateClientDTOTest::createClient(),);
+        $clientOne->handler(CreateClientDTOTest::createClient(), );
+        $clientTwo->handler(CreateClientDTOTest::createClient(), );
 
         return [$clientOne, $clientTwo];
     }
-
 }

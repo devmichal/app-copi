@@ -2,7 +2,6 @@
 
 namespace App\Tests\Shared\Domain\Factory\ReportPdf;
 
-
 use App\Core\Domain\Logic\CalculatePayout\SumPayoutTaskOfMonthInterface;
 use App\Core\Domain\Model\Client\Client;
 use App\Core\Domain\Model\Users\User;
@@ -12,13 +11,11 @@ use App\Shared\Domain\Factory\ReportPdf\DataPdfReport;
 use App\Shared\Infrastructure\ValueObject\FilterCreatedAtTask;
 use PHPUnit\Framework\TestCase;
 
-
 class DataPdfReportTest extends TestCase
 {
-    public const GROSS     = 'Brutto';
-    public const NET       = 'Netto';
+    public const GROSS = 'Brutto';
+    public const NET = 'Netto';
     public const CLIENT_ID = 'someId';
-
 
     /** @var MatchClientInterface|mixed|\PHPUnit\Framework\MockObject\MockObject */
     private $matchClient;
@@ -37,14 +34,13 @@ class DataPdfReportTest extends TestCase
 
     private DataPdfReport $dataPdfReport;
 
-
     final protected function setUp(): void
     {
-        $this->matchClient          = $this->createMock(MatchClientInterface::class);
+        $this->matchClient = $this->createMock(MatchClientInterface::class);
         $this->sumPayoutTaskOfMonth = $this->createMock(SumPayoutTaskOfMonthInterface::class);
-        $this->tasksOfMonth         = $this->createMock(TasksOfMonth::class);
-        $this->user                 = $this->createMock(User::class);
-        $this->client               = $this->createMock(Client::class);
+        $this->tasksOfMonth = $this->createMock(TasksOfMonth::class);
+        $this->user = $this->createMock(User::class);
+        $this->client = $this->createMock(Client::class);
 
         $this->dataPdfReport = new DataPdfReport(
             $this->matchClient,
@@ -100,5 +96,4 @@ class DataPdfReportTest extends TestCase
     {
         return new FilterCreatedAtTask(self::CLIENT_ID, null, null);
     }
-
 }

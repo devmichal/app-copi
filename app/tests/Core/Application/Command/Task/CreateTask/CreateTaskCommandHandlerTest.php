@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Core\Application\Command\Task\CreateTask;
-
 
 use App\Core\Application\Command\Task\CreateTask\CreateTaskCommand;
 use App\Core\Application\Command\Task\CreateTask\CreateTaskCommandHandler;
@@ -14,11 +12,9 @@ use App\Core\Domain\Model\Users\User;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 
-
 class CreateTaskCommandHandlerTest extends TestCase
 {
     public const PAYMENT = 12.0;
-
 
     private CreateTaskCommandHandler $createTaskCommandHandler;
 
@@ -31,12 +27,11 @@ class CreateTaskCommandHandlerTest extends TestCase
     /** @var Client|mixed|\PHPUnit\Framework\MockObject\MockObject */
     private $client;
 
-
     final protected function setUp(): void
     {
-        $this->entityManager   = $this->createMock(EntityManagerInterface::class);
+        $this->entityManager = $this->createMock(EntityManagerInterface::class);
         $this->calculatePayout = $this->createMock(CalculatePayoutInterface::class);
-        $this->client          = $this->createMock(Client::class);
+        $this->client = $this->createMock(Client::class);
 
         $this->createTaskCommandHandler = new CreateTaskCommandHandler(
             $this->entityManager,
@@ -54,11 +49,10 @@ class CreateTaskCommandHandlerTest extends TestCase
 
         $this->entityManager->expects(self::once())
              ->method('persist')
-             ->with(self::callback(fn(Task $task): bool =>
-                $task->getTitleTask()              === $commandTask->getCreateTaskDTO()->getTitleTask() &&
-                $task->getNumberCountCharacter()   === $commandTask->getCreateTaskDTO()->getNumberCountCharacter() &&
-                $task->getStatus()                 === $commandTask->getCreateTaskDTO()->isStatus() &&
-                $task->getWalletTask()->getMoney() === self::PAYMENT
+             ->with(self::callback(fn (Task $task): bool => $task->getTitleTask() === $commandTask->getCreateTaskDTO()->getTitleTask() &&
+                $task->getNumberCountCharacter() === $commandTask->getCreateTaskDTO()->getNumberCountCharacter() &&
+                $task->getStatus() === $commandTask->getCreateTaskDTO()->isStatus() &&
+                self::PAYMENT === $task->getWalletTask()->getMoney()
              ));
 
         $this->createTaskCommandHandler->createTask($commandTask);

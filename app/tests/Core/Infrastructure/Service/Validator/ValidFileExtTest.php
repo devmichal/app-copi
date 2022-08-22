@@ -2,7 +2,6 @@
 
 namespace App\Tests\Core\Infrastructure\Service\Validator;
 
-
 use App\Core\Infrastructure\Service\Validator\ValidFileExt;
 use App\Shared\Domain\Exception\InvalidUploadFile;
 use PHPUnit\Framework\TestCase;
@@ -10,10 +9,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ValidFileExtTest extends TestCase
 {
-    const TO_BIG_SIZE_FILE  = 2097192;
-    const CORRECT_FILE_SIZE = 2097142;
+    public const TO_BIG_SIZE_FILE = 2097192;
+    public const CORRECT_FILE_SIZE = 2097142;
 
-    /** @var ValidFileExt  */
     private ValidFileExt $validFileExt;
 
     /** @var mixed|\PHPUnit\Framework\MockObject\MockObject|UploadedFile */
@@ -21,7 +19,7 @@ class ValidFileExtTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->uploadFiles  = $this->createMock(UploadedFile::class);
+        $this->uploadFiles = $this->createMock(UploadedFile::class);
         $this->validFileExt = new ValidFileExt();
     }
 

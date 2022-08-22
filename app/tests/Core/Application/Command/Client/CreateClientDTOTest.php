@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Tests\Core\Application\Command\Client;
-
 
 use App\Core\Application\Command\Client\CreateClientDTO;
 
-final class     CreateClientDTOTest
+final class CreateClientDTOTest
 {
     public static function createClient(): CreateClientDTO
     {

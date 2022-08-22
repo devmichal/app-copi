@@ -10,37 +10,26 @@ final class FilterCreatedAtTask
 
     private ?string $finishCreatedAt;
 
-
     public function __construct(
         string $client,
         ?string $startCreatedAt,
         ?string $finishCreatedAt
-    )
-    {
-        $this->client          = $client;
-        $this->startCreatedAt  = $startCreatedAt !== 'null' ? $startCreatedAt : null;
-        $this->finishCreatedAt = $finishCreatedAt !== 'null' ? $finishCreatedAt : null;
+    ) {
+        $this->client = $client;
+        $this->startCreatedAt = 'null' !== $startCreatedAt ? $startCreatedAt : null;
+        $this->finishCreatedAt = 'null' !== $finishCreatedAt ? $finishCreatedAt : null;
     }
 
-    /**
-     * @return string
-     */
     public function getClient(): string
     {
         return $this->client;
     }
 
-    /**
-     * @return string|null
-     */
     public function getStartCreatedAt(): ?string
     {
         return $this->startCreatedAt;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFinishCreatedAt(): ?string
     {
         return $this->finishCreatedAt;

@@ -2,7 +2,6 @@
 
 namespace App\Tests\Core\Infrastructure\Security\CheckTokenCsrf;
 
-
 use App\Core\Infrastructure\RedisRepository\Csrf\GetCsrfSession;
 use App\Core\Infrastructure\Security\CheckTokenCsrf\CheckTokenCsrf;
 use App\Shared\Domain\Exception\InvalidCsrfToken;
@@ -10,11 +9,10 @@ use PHPUnit\Framework\TestCase;
 
 class CheckTokenCsrfTest extends TestCase
 {
-    const USER_ID    = 'someID';
-    const TOKEN_CSRF = '123Fk42';
-    const BAD_CSRF   = '9k98931';
+    public const USER_ID = 'someID';
+    public const TOKEN_CSRF = '123Fk42';
+    public const BAD_CSRF = '9k98931';
 
-    /** @var CheckTokenCsrf  */
     private CheckTokenCsrf $checkTokenCsrf;
 
     /** @var GetCsrfSession|mixed|\PHPUnit\Framework\MockObject\MockObject */

@@ -2,11 +2,9 @@
 
 namespace App\Core\Infrastructure\Service\SaveFiles;
 
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
-
 
 final class SaveUploadFile implements SaveUploadFileInterface
 {
@@ -14,20 +12,14 @@ final class SaveUploadFile implements SaveUploadFileInterface
 
     private KernelInterface $kernel;
 
-
     public function __construct(
         SluggerInterface $slugger,
         KernelInterface $kernel
-    )
-    {
+    ) {
         $this->slugger = $slugger;
         $this->kernel = $kernel;
     }
 
-    /**
-     * @param UploadedFile $uploadedFile
-     * @return string
-     */
     public function saveFile(UploadedFile $uploadedFile): string
     {
         $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);

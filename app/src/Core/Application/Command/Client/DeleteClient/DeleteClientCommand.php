@@ -10,7 +10,7 @@ final class DeleteClientCommand
 
     public function __construct(
         private string $clientId
-    ){
+    ) {
     }
 
     public function getClientId(): string

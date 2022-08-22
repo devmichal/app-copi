@@ -2,7 +2,6 @@
 
 namespace App\Tests\Core\Infrastructure\Security\ResetPassword\VerifyTokenPassword;
 
-
 use App\Core\Domain\Model\Users\User;
 use App\Core\Infrastructure\RedisRepository\Users\AddCacheTokenStatus;
 use App\Core\Infrastructure\Security\ResetPassword\VerifyTokenPassword\VerifyTokenPassword;
@@ -11,11 +10,10 @@ use PHPUnit\Framework\TestCase;
 
 class VerifyTokenPasswordTest extends TestCase
 {
-    const HASH_USER_CORRECT  = '$argon2id$v=19$m=65536,t=4,p=1$UWd4Sms4cDVONHljaUtFMQ$F3ti1IcdJ1qReiwquuD1BX+DzgUU73GOIv/TWowEk7A';
-    const TOKEN_USER_CORRECT = '';
-    const INCORRECT_TOKEN    = '12312047';
+    public const HASH_USER_CORRECT = '$argon2id$v=19$m=65536,t=4,p=1$UWd4Sms4cDVONHljaUtFMQ$F3ti1IcdJ1qReiwquuD1BX+DzgUU73GOIv/TWowEk7A';
+    public const TOKEN_USER_CORRECT = '';
+    public const INCORRECT_TOKEN = '12312047';
 
-    /** @var VerifyTokenPassword  */
     private VerifyTokenPassword $verifyTokenPassword;
 
     /** @var AddCacheTokenStatus|mixed|\PHPUnit\Framework\MockObject\MockObject */
@@ -27,7 +25,7 @@ class VerifyTokenPasswordTest extends TestCase
     protected function setUp(): void
     {
         $this->addCacheTokenStatus = $this->createMock(AddCacheTokenStatus::class);
-        $this->user                = $this->createMock(User::class);
+        $this->user = $this->createMock(User::class);
 
         $this->verifyTokenPassword = new VerifyTokenPassword(
             $this->addCacheTokenStatus

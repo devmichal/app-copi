@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Domain\Model\Task;
-
 
 use App\Core\Application\Command\Task\CreateTaskDTO;
 use App\Core\Domain\Model\Client\Client;
@@ -11,7 +9,6 @@ use App\Core\Domain\Model\TypeText\TypeText;
 use App\Core\Domain\Model\Users\User;
 use App\Core\Domain\Model\Wallet\WalletTask;
 use Doctrine\Common\Collections\Collection;
-
 
 class Task
 {
@@ -29,7 +26,7 @@ class Task
 
     private ?TypeText $typeText = null;
 
-     /*zzs on 1000*/
+    /*zzs on 1000*/
     private int $numberCountCharacter;
 
     private User $users;
@@ -38,14 +35,12 @@ class Task
 
     private WalletTask $walletTask;
 
-
     public function __construct(
         User $user
-    )
-    {
-        $this->id         = uuid_create();
-        $this->users      = $user;
-        $this->status     = false;
+    ) {
+        $this->id = uuid_create();
+        $this->users = $user;
+        $this->status = false;
     }
 
     /**
@@ -54,14 +49,13 @@ class Task
     final public function factoryTask(
         CreateTaskDTO $createTaskDTO,
         float $payoutMoney
-    ): void
-    {
-        $this->titleTask            = $createTaskDTO->getTitleTask();
-        $this->client               = $createTaskDTO->getClient();
+    ): void {
+        $this->titleTask = $createTaskDTO->getTitleTask();
+        $this->client = $createTaskDTO->getClient();
         $this->numberCountCharacter = $createTaskDTO->getNumberCountCharacter();
-        $this->typeText             = $createTaskDTO->getTypeText();
-        $this->status               = $createTaskDTO->isStatus();
-        $this->walletTask           = new WalletTask($payoutMoney);
+        $this->typeText = $createTaskDTO->getTypeText();
+        $this->status = $createTaskDTO->isStatus();
+        $this->walletTask = new WalletTask($payoutMoney);
     }
 
     /**
@@ -69,9 +63,7 @@ class Task
      */
     final public function updateTaskDate(
         CreateTaskDTO $createTaskDTO
-    ): void
-    {
+    ): void {
         $this->taskDate = new TaskDate($createTaskDTO);
     }
-
 }

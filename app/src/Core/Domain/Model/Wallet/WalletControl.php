@@ -1,13 +1,10 @@
 <?php
 
-
 namespace App\Core\Domain\Model\Wallet;
-
 
 use App\Core\Domain\Model\Users\User;
 use App\Core\Domain\Model\Wallet\GS\WalletControlGS;
 use DateTime;
-
 
 class WalletControl
 {
@@ -26,12 +23,11 @@ class WalletControl
     public function __construct(
         User $user,
         float $earMoney
-    )
-    {
-        $this->id         = uuid_create();
-        $this->users      = $user;
-        $this->createdAt  = new \DateTime();
+    ) {
+        $this->id = uuid_create();
+        $this->users = $user;
+        $this->createdAt = new \DateTime();
         $this->walletTask = $user->getWallet();
-        $this->money      = $earMoney;
+        $this->money = $earMoney;
     }
 }

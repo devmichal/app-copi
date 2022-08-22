@@ -2,7 +2,6 @@
 
 namespace App\Core\Ports\Rest\Wallet;
 
-
 use App\Core\Application\Query\UserManagement\GetUserWallet\UserWalletQuery;
 use App\Core\Ports\Rest\QueryApi;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,5 +21,4 @@ class GetWallet extends QueryApi
 
         return $this->serializeQueryObject($getTasks);
     }
-
 }

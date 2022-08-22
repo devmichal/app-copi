@@ -2,18 +2,15 @@
 
 namespace App\Tests\Core\Application\Command\Task\TaskDate;
 
-
 use App\Core\Application\Command\Task\CreateTaskDTO;
 use App\Core\Domain\Model\Task\TaskDate;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
-
 class TaskDateTest extends TestCase
 {
     public const FORMAT_TIME = 'Y-m-d H:i';
-    public const DATA_TIME   = '05-12-2021';
-
+    public const DATA_TIME = '05-12-2021';
 
     final public function testShouldCreateActualDateForCreatedAt(): void
     {

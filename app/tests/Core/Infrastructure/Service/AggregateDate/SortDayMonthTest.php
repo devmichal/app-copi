@@ -2,7 +2,6 @@
 
 namespace App\Tests\Core\Infrastructure\Service\AggregateDate;
 
-
 use App\Core\Infrastructure\Service\AggregateDate\LastDayOfMonth;
 use PHPUnit\Framework\TestCase;
 
@@ -17,5 +16,4 @@ class SortDayMonthTest extends TestCase
 
         $this->assertEquals($date, $result);
     }
-
 }

@@ -2,13 +2,10 @@
 
 namespace App\Core\Infrastructure\Service\AggregateDate;
 
-
 use DateTime;
-
 
 final class LastDayOfMonth
 {
-
     public static function getDay(): string
     {
         $dateTime = new DateTime();

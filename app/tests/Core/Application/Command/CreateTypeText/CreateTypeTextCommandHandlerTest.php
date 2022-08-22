@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Core\Application\Command\CreateTypeText;
-
 
 use App\Core\Application\Command\TypeText\CreateTypeText\CreateTypeTextCommand;
 use App\Core\Application\Command\TypeText\CreateTypeText\CreateTypeTextCommandHandler;
@@ -35,8 +33,7 @@ class CreateTypeTextCommandHandlerTest extends TestCase
 
         $this->entityManager->expects(self::once())
              ->method('persist')
-             ->with(self::callback(fn(TypeText $typeText): bool =>
-                  $typeText->getDestination() === $createTypeTextDTO->getCreateTypeTextDTO()->getDestination()
+             ->with(self::callback(fn (TypeText $typeText): bool => $typeText->getDestination() === $createTypeTextDTO->getCreateTypeTextDTO()->getDestination()
              ));
 
         $this->createTypeTextCommandHandler->createText($createTypeTextDTO);
@@ -49,5 +46,4 @@ class CreateTypeTextCommandHandlerTest extends TestCase
 
         return new CreateTypeTextCommand($createTypeTextDTO, new User());
     }
-
 }

@@ -2,17 +2,14 @@
 
 namespace App\Tests\Shared\Infrastructure\Notification\FactoryEmil;
 
-
 use App\Shared\Domain\Enum\Email\TypeEmail;
 use App\Shared\Infrastructure\Notification\FactoryEmil\FactoryEmail;
-use App\Shared\Infrastructure\Notification\NotificationEmil;
 use PHPUnit\Framework\TestCase;
 
 class FactoryEmailTest extends TestCase
 {
-    public const USER_EMAIL  = 'some-token';
-    public const USER_TOKEN  = 'someToken';
-
+    public const USER_EMAIL = 'some-token';
+    public const USER_TOKEN = 'someToken';
 
     final public function testShouldReturnEmailDataToResetPassword(): void
     {
@@ -22,5 +19,4 @@ class FactoryEmailTest extends TestCase
         $this->assertEquals(self::USER_EMAIL, $result->getRecipientEmail());
         $this->assertIsArray($result->getDataEmail());
     }
-
 }

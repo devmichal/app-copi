@@ -2,17 +2,14 @@
 
 namespace App\Core\Infrastructure\RedisRepository\AntiBrutForce;
 
-
 use App\Core\Infrastructure\RedisRepository\RedisConfig;
-
 
 final class AntiBrutForceCache extends RedisConfig implements BrutForceManagerCache
 {
     public const KEY_REDIS_FORCE = 'brut-force-';
-    public const TIMEOUT_TOKEN   = 36000; // it`s 10h
+    public const TIMEOUT_TOKEN = 36000; // it`s 10h
 
     public string $key;
-
 
     public function addKey(string $id): void
     {

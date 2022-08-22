@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Ports\Rest\Client;
-
 
 use App\Core\Application\Query\Client\GetClients\GetClientsQuery;
 use App\Core\Ports\Rest\QueryApi;
@@ -14,7 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class GetClients extends QueryApi
 {
-
     /**
      * @Route("/client", methods={"GET"})
      */

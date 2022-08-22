@@ -1,18 +1,14 @@
 <?php
 
-
 namespace App\Tests\Core\Infrastructure\Security;
-
 
 use App\Core\Domain\Model\Users\User;
 use App\Core\Infrastructure\Security\UserStatusEnabled;
 use App\Shared\Domain\Exception\DisabledAccount;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Security\Core\Exception\DisabledException;
 
 class UserStatusEnabledTest extends TestCase
 {
-    /** @var UserStatusEnabled  */
     private UserStatusEnabled $userStatusEnabled;
 
     protected function setUp(): void
@@ -37,5 +33,4 @@ class UserStatusEnabledTest extends TestCase
 
         $this->assertEmpty($result);
     }
-
 }

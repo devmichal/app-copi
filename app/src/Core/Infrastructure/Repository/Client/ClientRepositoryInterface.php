@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Infrastructure\Repository\Client;
-
 
 use App\Core\Domain\Model\Client\Client;
 

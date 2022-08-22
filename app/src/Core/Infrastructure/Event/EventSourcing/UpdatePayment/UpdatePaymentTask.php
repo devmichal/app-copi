@@ -2,7 +2,6 @@
 
 namespace App\Core\Infrastructure\Event\EventSourcing\UpdatePayment;
 
-
 class UpdatePaymentTask
 {
     private float $newPayment;
@@ -11,13 +10,10 @@ class UpdatePaymentTask
 
     private float $equalPayment;
 
-
     public function __construct(
         float $newPayment,
         float $oldPayment
-    )
-    {
-
+    ) {
         $this->newPayment = $newPayment;
         $this->oldPayment = $oldPayment;
 
